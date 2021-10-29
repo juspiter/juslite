@@ -1,6 +1,4 @@
 import unittest
-
-from pymongo import response
 from storage import Storage
 
 
