@@ -11,8 +11,8 @@ class Storage:
 
     def add_lawsuit(self, lawsuit: dict):
         num = lawsuit['number']
-
-        self.conn.jusdb.lawsuits.find_one_and_update({"number": num}, {'$set': lawsuit}, upsert=True)
+        self.conn.jusdb.lawsuits.find_one_and_update(
+            {"number": num}, {'$set': lawsuit}, upsert=True)
 
     def get_lawsuit(self) -> dict:
         return self.conn.jusdb.lawsuits.find_one()
