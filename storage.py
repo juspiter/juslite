@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, errors
 
 
 class Storage:
@@ -6,7 +6,7 @@ class Storage:
         self.conn = MongoClient(addr, serverSelectionTimeoutMS=5000)
         try:
             self.conn.server_info()
-        except ServerSelectionTimeoutError:
+        except errors.ServerSelectionTimeoutError:
             self.conn = None
 
     def add_lawsuit(self, lawsuit: dict):
