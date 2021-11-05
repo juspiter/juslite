@@ -1,11 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
 
+#https://www2.tjal.jus.br/cpopg/show.do?processo.codigo=2C00008XG0000&processo.foro=84&processo.numero=0000001-03.2017.8.02.0084
 
 class BaseCrawler:
-    def __init__(self, url: str):
+    def __init__(self, number: str):
+        url = f"https://www2.tjal.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado={number}&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha="
         try:
-            response = requests.get(url, timeout=1)
+            response = requests.get(url, timeout=5)
         except:
             self.soup = None
             return
@@ -21,6 +23,9 @@ class BaseCrawler:
     def parse_lawsuit(self) -> dict:
         lawsuit = {}
         changes = []
+
+        if not self.soup:
+            return lawsuit
 
         lawsuit.update({"number": self.soup.find(
             id="numeroProcesso").get_text(strip=True)})

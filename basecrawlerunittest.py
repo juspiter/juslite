@@ -4,7 +4,7 @@ import requests
 
 
 class TestBaseCrawler(TestCase):
-    crawl = BaseCrawler("https://www2.tjal.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado=0710802-55.2018.8.02.0001&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha=")
+    crawl = BaseCrawler("0710802-55.2018.8.02.0001")
 
     def test_1_request_html(self):
         self.assertEqual(self.crawl.status_code, requests.codes.ok)
@@ -13,7 +13,7 @@ class TestBaseCrawler(TestCase):
         self.assertTrue(self.crawl.found_lawsuit)
 
     def test_3_if_found_lawsuit_is_false(self):
-        fail_crawl = BaseCrawler("https://www2.tjal.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado=0710x02-55.2018.8.02.0001&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha=")
+        fail_crawl = BaseCrawler("0710x02-55.2018.8.02.0001")
         self.assertFalse(fail_crawl.found_lawsuit)
 
     def test_4_if_soup_is_not_none(self):
