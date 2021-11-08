@@ -18,5 +18,8 @@ storage = Storage('172.17.0.2:27017')
 #     crawl = BaseCrawler(line[:-1])
 #     storage.add_lawsuit(crawl.parse_lawsuit())
 
-# print(storage.count_lawsuits())
-print(storage.get_lawsuit("0000001-30.2007.8.02.0059"))
+
+
+print(storage.count_lawsuits())
+# print(storage.get_lawsuit("0710802-55.2018.8.02.0001"))
+json.dumps(storage.get_lawsuit("0710802-55.2018.8.02.0001"), ensure_ascii=False, skipkeys=True, indent=4)

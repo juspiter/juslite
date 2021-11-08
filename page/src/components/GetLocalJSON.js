@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import process from './lawsuit.json';
+import { useState } from 'react';
+// import process from './lawsuit.json';
+import axios from "axios";
 
 
 const GetLocalJSON = (props) =>
 {
-  // console.log(props.term)
+  const [process, setProcess] = useState("");
+  var url = "http://localhost:3001/lawsuit/" + props.term
   if (props.term === "0710802-55.2018.8.02.0001")
   {
-
-    return(
+    console.log(url)
+    axios.get(url)
+      .then(res => setProcess(res.data));
+    console.log(process)
+     /* return(
       <div>
         {process.map(proc => (
           <div>
@@ -26,7 +32,7 @@ const GetLocalJSON = (props) =>
         ))}
 
       </div>
-    );
+    ); */
   }
   return (<div>Sem processo</div>)
 }
