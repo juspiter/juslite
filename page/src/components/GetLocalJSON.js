@@ -1,7 +1,29 @@
 import React, { Component } from 'react';
+import process from './lawsuit.json';
 
-import process from './lawsuit.json'; // RENAME VAR
-class GetLocalJSON extends Component {
+
+const GetLocalJSON = (props) =>
+{
+  // console.log(props.term)
+  if (props.term === "0710802-55.2018.8.02.0001")
+  {
+
+    return(
+      <div>
+        {process.map(proc => (
+          <div>
+            <div>{proc['number']}</div>
+            <div>{proc['changes'][0]['date']}</div>
+          </div>
+        ))}
+
+      </div>
+    );
+  }
+  return (<div>Sem processo</div>)
+}
+
+/* class GetLocalJSON extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -17,11 +39,9 @@ class GetLocalJSON extends Component {
                 {
                     process.map(proc => (
                         <div>
-							<p className="title">{proc['changes'][0]['date']}   {proc['changes'][0]['title']}</p>
-                            <p className="body">{proc['changes'][0]['content']}</p>
+							<p className="title">{proc['changes'][i]['date']}   {proc['changes'][i]['title']}</p>
+                            <p className="body">{proc['changes'][i]['content']}</p>
 							<br></br>
-                            <p className="title">{proc['changes'][1]['date']}   {proc['changes'][1]['title']}</p>
-                            <p className="body">{proc['changes'][1]['content']}</p>
                           </div>
                     ))
                 }
@@ -30,5 +50,5 @@ class GetLocalJSON extends Component {
         );
     }
   }
-
+*/
   export default GetLocalJSON;

@@ -1,6 +1,6 @@
 {
-  "short_name": "JusLite",
-  "name": "JusLite page",
+  "short_name": "Juslite",
+  "name": "Juslite page",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "júspiter_icon_v0.2.png",
+      "src": "juspiter_icon_v0.2.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "júspiter_icon_v0.2.png",
+      "src": "juspiter_icon_v0.2.png",
       "type": "image/png",
       "sizes": "512x512"
     }
