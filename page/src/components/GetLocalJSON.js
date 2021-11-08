@@ -12,8 +12,16 @@ const GetLocalJSON = (props) =>
       <div>
         {process.map(proc => (
           <div>
-            <div>{proc['number']}</div>
-            <div>{proc['changes'][0]['date']}</div>
+            <br></br>
+            <h2><b>{proc['number']}</b></h2>
+            <br></br>
+            {proc['changes'].map(change => (
+              <div>
+                <li key={change}><i>{change['date']}</i> {change['title']}
+                <br></br>{change['content']}</li>
+                <br></br>
+              </div>
+            ))}
           </div>
         ))}
 
