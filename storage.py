@@ -17,7 +17,9 @@ class Storage:
             {"number": num}, {'$set': lawsuit}, upsert=True)
 
     def get_lawsuit(self, number:str) -> dict:
-        return self.conn.jusdb.lawsuits.find_one({"number": number})
+        lawsuit_dict = self.conn.jusdb.lawsuits.find_one({"number": number})
+        lawsuit_dict.pop('_id')
+        return lawsuit_dict
 
     def delete_lawsuit(self, number: str):
         self.conn.jusdb.lawsuits.delete_one({"number": number})
