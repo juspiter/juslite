@@ -1,10 +1,11 @@
 import GetFromAPI from './components/GetFromAPI';
 import { useState } from 'react';
+import './App.css';
 
 const App = () =>
 {
   const [searchTerm, setSearchTerm] = useState("");
-  const [display, setDisplay] = useState("");
+  const [contentDisplay, setContentDisplay] = useState("");
 
   const handleChange = event =>
   {
@@ -15,7 +16,7 @@ const App = () =>
   {
     event.preventDefault();
     console.log("test");
-    setDisplay(<GetFromAPI term={searchTerm}/>);
+    setContentDisplay(<GetFromAPI term={searchTerm}/>);
   }
 
   return (
@@ -25,6 +26,7 @@ const App = () =>
     </header>
     <form onSubmit={handleSubmit}>
       <input
+        class="search-container"
         type="text"
         placeholder='Digite sua busca...'
         value={searchTerm}
@@ -32,7 +34,7 @@ const App = () =>
         />
       <button type='submit'>Buscar</button>
     </form>
-    {display}
+    {contentDisplay}
     </>
   );
 }

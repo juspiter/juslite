@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import { useState, useEffect } from 'react';
-// import process from './lawsuit.json';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
 
@@ -24,12 +22,11 @@ const GetFromAPI = (props) =>
       console.log("achou processo")
       return(
         <div>
-          <br></br>
-          <h2><b>{proc['number']}</b></h2>
-          <br></br>
+          <h3><b>Processo: {proc['number']} (TJAL)</b></h3>
+          <h3><b>Movimentações:</b></h3>
           {proc['changes'].map(change => (
             <div>
-              <li key={change}><i>{change['date']}</i> {change['title']}
+              <li key={change}><i>{change['date']}:</i> {change['title']}
               <br></br>{change['content']}</li>
               <br></br>
             </div>
@@ -39,7 +36,7 @@ const GetFromAPI = (props) =>
     }
 
   console.log("sem processo")
-  return (<div>Sem processo</div>)
+  return (<div><br></br>Sem processo</div>)
 }
 
 export default GetFromAPI;

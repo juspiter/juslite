@@ -32,6 +32,11 @@ table, th, tr, td {
   border: 1px solid white;
 }
 
+.search-container {
+  min-width: 170px;
+  /* margin: 50px auto; */
+}
+
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
