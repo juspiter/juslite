@@ -22,6 +22,7 @@ class BaseCrawler:
 
     def parse_lawsuit(self) -> dict:
         lawsuit = {}
+        parties = []
         changes = []
 
         if not self.soup:
@@ -29,6 +30,14 @@ class BaseCrawler:
 
         lawsuit.update({"number": self.soup.find(
             id="numeroProcesso").get_text(strip=True)})
+
+        part_table = self.soup.find('table', id="tableTodasPartes")
+        if part_table is None:
+            part_table = self.soup.find('table', id="tablePartesPrincipais")
+        parts = part_table.find_all('td')
+
+        for part in parts:
+            parties.append(part.get_text('\n', strip=True))
 
         move_table = self.soup.find('tbody', id="tabelaTodasMovimentacoes")
         moves = move_table.find_all('tr')
@@ -48,5 +57,21 @@ class BaseCrawler:
 
             changes.append(change)
 
+        lawsuit.update({"parties": parties})
         lawsuit.update({"changes": changes})
         return lawsuit
+
+"""
+0000001-24.2009.8.02.0006 
+<tr class="fundoClaro">
+	<td valign="top" width="141" style="padding-bottom: 5px" class="label">
+		<span class="mensagemExibindo tipoDeParticipacao">Requerente&nbsp;</span>
+	</td>
+	<td class="nomeParteEAdvogado" width="*" align="left" style="padding-bottom: 5px">
+					Cláudio Francisco Demétrio Lemos
+				<br />
+				<span class="mensagemExibindo">Advogado:&nbsp;</span>
+						Jânio Cavalcante Gonzaga
+				&nbsp;
+	</td>
+</tr> """

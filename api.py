@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
 from storage import Storage
-import json
 
 
 app = Flask(__name__)

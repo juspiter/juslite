@@ -23,6 +23,11 @@ const GetFromAPI = (props) =>
       return(
         <div>
           <h3><b>Processo: {proc['number']} (TJAL)</b></h3>
+          <h3><b>Partes do Processo</b></h3>
+            <div>
+              {proc['parties'].map(part =>
+                <li>{part}</li>)}
+            </div>
           <h3><b>Movimentações:</b></h3>
           {proc['changes'].map(change => (
             <div>
