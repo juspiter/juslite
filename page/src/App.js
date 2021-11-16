@@ -1,4 +1,5 @@
 import GetFromAPI from './components/GetFromAPI';
+import juspiter_logo from './logo192.png';
 import { useState } from 'react';
 import './App.css';
 
@@ -20,22 +21,24 @@ const App = () =>
   }
 
   return (
-    <>
-    <header>
-      <h1>Juslite</h1>
-    </header>
-    <form onSubmit={handleSubmit}>
-      <input
-        class="search-container"
-        type="text"
-        placeholder='Digite sua busca...'
-        value={searchTerm}
-        onChange={handleChange}
-        />
-      <button type='submit'>Buscar</button>
-    </form>
-    {contentDisplay}
-    </>
+    <main class="container">
+      <header id="header_">
+        <img src={juspiter_logo} class="img-thumbnail" alt="Imagem vetorial do planeta jupiter com uma lupa na parte inferior"/>
+        <h1>Juslite</h1>
+        <form class="input-group mb-3" onSubmit={handleSubmit}>
+          <input
+            class="input-group-text"
+            type="text"
+            placeholder='Digite sua busca...'
+            value={searchTerm}
+            onChange={handleChange}
+            />
+          <button class="input-group-text" type='submit'>Buscar</button>
+        </form>
+        <hr/>
+      </header>
+      {contentDisplay}
+    </main>
   );
 }
 

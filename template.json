@@ -1,7 +1,11 @@
 [
     {
         "number": "0710802-55.2018.8.02.0001",
-        "parties":["", "", ""],
+        "parties":
+            {
+                "party" : "",
+                "names" : ["", ""]
+            },
         "changes": [
             {
                 "date": "xx/xx/xx",

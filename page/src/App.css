@@ -1,6 +1,6 @@
-.App {
-  /* text-align: center; */
-}
+/* .App {
+  /* text-align: center; 
+} */
 
 /* .App-logo {
   height: 40vmin;
@@ -12,6 +12,22 @@
     animation: App-logo-spin infinite 20s linear;
   }
 } */
+#header_ img{
+  height:60px;
+	position: absolute;
+}
+
+#header_ h1{
+  margin:0;
+	line-height: 30px;
+	margin-left: 70px;
+	padding-top: 15px;
+  text-align: left;
+}
+
+#header_ form{
+  margin-top: 30px;
+}
 
 .App-header {
   background-color: #282c34;

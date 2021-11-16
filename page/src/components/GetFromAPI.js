@@ -21,27 +21,38 @@ const GetFromAPI = (props) =>
     {
       console.log("achou processo")
       return(
-        <div>
-          <h3><b>Processo: {proc['number']} (TJAL)</b></h3>
-          <h3><b>Partes do Processo</b></h3>
-            <div>
+        <section>
+          <h3>Nº do processo: <b> {proc['number']} (TJAL)</b></h3>
+          <br></br>
+          <h3><b>Partes do Processo:</b></h3>
+            <ul>
               {proc['parties'].map(part =>
                 <li>{part}</li>)}
-            </div>
+            </ul>
+          <br></br>
           <h3><b>Movimentações:</b></h3>
+          <div>
+              <li class="row align-items-start">
+                <div class="col-2"><i>Data</i></div>
+                <div class="col-10"><i>Movimentações</i></div>
+              </li>
+              <hr/>
+            </div>
           {proc['changes'].map(change => (
             <div>
-              <li key={change}><i>{change['date']}:</i> {change['title']}
-              <br></br>{change['content']}</li>
-              <br></br>
+              <li class="row align-items-start" key={change}>
+                <div class="col-2"><i>{change['date']}</i></div>
+                <div class="col-10">{change['title']}<br/>{change['content']}</div>
+              </li>
+              <hr/>
             </div>
           ))}
-        </div>
+        </section>
         );
     }
 
   console.log("sem processo")
-  return (<div><br></br>Sem processo</div>)
+  return (<section><br></br>Sem processo</section>)
 }
 
 export default GetFromAPI;
