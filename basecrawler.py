@@ -2,13 +2,14 @@ import requests
 from bs4 import BeautifulSoup
 
 #https://www2.tjal.jus.br/cpopg/show.do?processo.codigo=2C00008XG0000&processo.foro=84&processo.numero=0000001-03.2017.8.02.0084
+#0000001-03.2011.8.02.0055
 
 class BaseCrawler:
     def __init__(self, number: str):
         url = f"https://www2.tjal.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado={number}&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha="
         try:
             response = requests.get(url, timeout=5)
-        except:
+        except Exception:
             self.soup = None
             return
 
@@ -20,16 +21,33 @@ class BaseCrawler:
         else:
             self.soup = None
 
-    def parse_lawsuit(self) -> dict:
+    def crawl_lawsuit(self) -> dict:
         lawsuit = {}
-        parties = []
-        changes = []
 
         if not self.soup:
             return lawsuit
 
         lawsuit.update({"number": self.soup.find(
             id="numeroProcesso").get_text(strip=True)})
+
+        lawsuit.update({"status": self.soup.find(
+            id="labelSituacaoProcesso").get_text(strip=True)})
+
+        lawsuit.update({"class": self.soup.find(
+            id="classeProcesso").get_text(strip=True)})
+
+        lawsuit.update({"subject": self.soup.find(
+            id="assuntoProcesso").get_text(strip=True)})
+
+        lawsuit.update({"judge": self.soup.find(
+            id="juizProcesso").get_text(strip=True)})
+
+        lawsuit.update({"parties": self.crawl_lawsuit_parties()})
+        lawsuit.update({"changes": self.crawl_lawsuit_changes()})
+        return lawsuit
+
+    def crawl_lawsuit_parties(self) -> list:
+        parties = []
 
         part_table = self.soup.find('table', id="tableTodasPartes")
         if part_table is None:
@@ -39,6 +57,11 @@ class BaseCrawler:
         for part in parts:
             parties.append(part.get_text('\n', strip=True))
 
+        return parties
+
+    def crawl_lawsuit_changes(self) -> list:
+        changes = []
+        
         move_table = self.soup.find('tbody', id="tabelaTodasMovimentacoes")
         moves = move_table.find_all('tr')
 
@@ -57,9 +80,7 @@ class BaseCrawler:
 
             changes.append(change)
 
-        lawsuit.update({"parties": parties})
-        lawsuit.update({"changes": changes})
-        return lawsuit
+        return changes
 
 """
 0000001-24.2009.8.02.0006 
