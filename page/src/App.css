@@ -44,6 +44,14 @@
   color: #61dafb;
 }
 
+h5.info {
+  font-size: 16px;
+}
+
+h5.info > span {
+  font-size: 20px;
+}
+
 table, th, tr, td {
   border: 1px solid white;
 }
