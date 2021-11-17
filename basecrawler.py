@@ -30,8 +30,11 @@ class BaseCrawler:
         lawsuit.update({"number": self.soup.find(
             id="numeroProcesso").get_text(strip=True)})
 
-        lawsuit.update({"status": self.soup.find(
-            id="labelSituacaoProcesso").get_text(strip=True)})
+        try:
+            lawsuit.update({"status": self.soup.find(
+                id="labelSituacaoProcesso").get_text(strip=True)})
+        except AttributeError:
+            lawsuit.update({"status": ""})
 
         lawsuit.update({"class": self.soup.find(
             id="classeProcesso").get_text(strip=True)})
@@ -39,8 +42,11 @@ class BaseCrawler:
         lawsuit.update({"subject": self.soup.find(
             id="assuntoProcesso").get_text(strip=True)})
 
-        lawsuit.update({"judge": self.soup.find(
-            id="juizProcesso").get_text(strip=True)})
+        try:
+            lawsuit.update({"judge": self.soup.find(
+                id="juizProcesso").get_text(strip=True)})
+        except AttributeError:
+            lawsuit.update({"judge": ""})
 
         lawsuit.update({"parties": self.crawl_lawsuit_parties()})
         lawsuit.update({"changes": self.crawl_lawsuit_changes()})
