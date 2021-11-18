@@ -27,6 +27,8 @@ class BaseCrawler:
         if not self.soup:
             return lawsuit
 
+        lawsuit.update({"court": "tjal"})
+
         lawsuit.update({"number": self.soup.find(
             id="numeroProcesso").get_text(strip=True)})
 
