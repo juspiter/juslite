@@ -5,7 +5,7 @@ import json
 # https://www2.tjal.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado=0710802-55.2018.8.02.0001&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha=
 
 # docker run --name jusdb -d mongo:4.4.10
-storage = Storage('172.17.0.2:27017')
+storage = Storage('172.18.0.2:27017')
 
 # crawl = BaseCrawler("0000001-24.2009.8.02.0006")
 # print(crawl.parse_lawsuit())
@@ -17,7 +17,7 @@ lines = file.readlines()
 
 for line in lines:
     crawl = BaseCrawler(line[:-1])
-    storage.add_lawsuit(crawl.parse_lawsuit())
+    storage.add_lawsuit(crawl.crawl_lawsuit())
     print("crawled process: " + line[:-1])
 
 # print(storage.delete_lawsuit("9999999-xx.2018.8.02.0001"))
