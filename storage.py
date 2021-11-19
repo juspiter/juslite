@@ -16,10 +16,10 @@ class Storage:
     def search_lawsuits(self, term: str) -> list:
         s = Search(using=self.es, doc_type="lawsuit").query('multi_match',
             query=term,
-            fields=['court', 'number', 'status', 'class', 'subject', 'judge'])
+            fields=['court', 'number', 'status', 'class', 'subject', 'judge', 'parties'])
 
         res = s.execute()
-        return [hit.to_dict() for hit in res.hits]
+        return {"response": [hit.to_dict() for hit in res.hits]}
 
     def count_lawsuits(self) -> int:
         return Search(using=self.es, doc_type="lawsuit").count()

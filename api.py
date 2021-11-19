@@ -13,7 +13,7 @@ storage = Storage('172.17.0.2:9200')
 @app.route("/lawsuit/<path:endpoint>", methods=["GET"])
 @cross_origin()
 def query_lawsuit(endpoint):
-    return storage.search_lawsuits(endpoint)[0]
+    return storage.search_lawsuits(endpoint)
 
 
 if __name__ == '__main__':
