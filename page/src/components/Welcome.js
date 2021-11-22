@@ -2,7 +2,7 @@ import React from 'react';
 
 const Welcome = () => {
 	return (
-		<p>Boas vindas!</p>
+		<p>Boas-vindas!</p>
 	 );
 }
 

@@ -46,7 +46,7 @@ const App = () =>
   return (
     <main className="container">
       <header id="header_">
-        <img src={require('./jupiter_planet.png')} className="img-thumbnail" alt="Imagem vetorial do planeta jupiter com uma lupa na parte inferior"/>
+        <img src="/image/juspiter.png" className="img-thumbnail" alt="Imagem vetorial do planeta jupiter com uma lupa na parte inferior"/>
         <h1>Juslite</h1>
         <form className="input-group mb-3" onSubmit={handleSearchSubmit}>
           <input
