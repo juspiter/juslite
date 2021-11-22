@@ -1,37 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import axios from "axios";
+import React, { useEffect } from 'react';
 
 
-const GetFromAPI = (props) =>
+const LawsuitDisplay = (props) =>
 {
-  const [proc, setProcess] = useState("");
-
   useEffect(() => {
-    setProcess("")
-    if (props.term && props.term.length == 25 ) {
-    var url = "http://localhost:3001/lawsuit/" + props.term
-    console.log(url)
-    axios.get(url)
-      .then(res => setProcess(res.data));
-    }
-  }, [props])
+    window.scrollTo(0, 0)
+  }, [])
 
-    console.log(proc)
-    if (proc)
-    {
-      console.log("achou processo")
       return(
         <>
           <section class="d-inline-flex p-3 bd-highlight align-items-center gap-3">
-            <h3>Nº do processo:<b> {proc['number']} (TJAL)</b></h3>
-            <h5 class="m-1 info p-1 border border-2 rounded-pill">{proc['status']}</h5>
+            <h3>Nº do processo:<b> {props.proc['number']} (TJAL)</b></h3>
+            <h5 class="m-1 info p-1 border border-2 rounded-pill">{props.proc['status']}</h5>
           </section>
           <br/>
           <section class="container">
             <div class="row">
-              <h5 class="info col">Classe<span class="row m-0">{proc['class']}</span></h5>
-              <h5 class="info col">Assunto<span class="row m-0">{proc['subject']}</span></h5>
-              <h5 class="info col">Juiz/Juíza<span class="row m-0">{proc['judge']}</span></h5>
+              <h5 class="info col">Classe<span class="row m-0">{props.proc['class']}</span></h5>
+              <h5 class="info col">Assunto<span class="row m-0">{props.proc['subject']}</span></h5>
+              <h5 class="info col">Juiz/Juíza<span class="row m-0">{props.proc['judge']}</span></h5>
             </div>
           </section>
           <hr></hr>
@@ -39,7 +26,7 @@ const GetFromAPI = (props) =>
           <section>
             <h3><b>Partes do Processo:</b></h3>
             <ul>
-              {proc['parties'].map(part =>
+              {props.proc['parties'].map(part =>
                 <li>{part}</li>)}
             </ul>
           </section>
@@ -53,7 +40,7 @@ const GetFromAPI = (props) =>
                 </li>
                 <hr/>
               </div>
-            {proc['changes'].map(change => (
+            {props.proc['changes'].map(change => (
               <div>
                 <li class="row align-items-start" key={change}>
                   <div class="col-2"><i>{change['date']}</i></div>
@@ -67,8 +54,4 @@ const GetFromAPI = (props) =>
         );
     }
 
-  console.log("sem processo")
-  return (<section><br></br>Sem processo</section>)
-}
-
-export default GetFromAPI;
+export default LawsuitDisplay;
