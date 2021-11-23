@@ -7,7 +7,7 @@ const LawsuitList = (props) => {
 
   useEffect(() => {
     setSelectedLawsuit(false);
-  }, [props]);
+  }, [props.requestResponse]);
 
   const SelectLawsuitHandler = (selectedLawsuitContent) => {
     console.log(selectedLawsuitContent);

@@ -16,7 +16,7 @@ class Storage:
     def search_lawsuits(self, term: str) -> list:
         s = Search(using=self.es, doc_type="lawsuit").query('multi_match',
             query=term,
-            fields=['court', 'number', 'status', 'class', 'subject', 'judge', 'parties'])
+            fields=['court', 'number', 'status', 'class', 'subject', 'judge', 'parties.names'])
 
         res = s.execute()
         return {"response": [hit.to_dict() for hit in res.hits]}

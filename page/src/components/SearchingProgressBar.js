@@ -2,7 +2,7 @@ import React from 'react';
 
 const SearchingProgressBar = () => {
 	return (
-		<p>Buscando...</p>
+		<h5>Buscando...</h5>
 	 );
 }
 

@@ -50,7 +50,7 @@ const App = () =>
         <h1>Juslite</h1>
         <form className="input-group mb-3" onSubmit={handleSearchSubmit}>
           <input
-            className="input-text input-group-text"
+            className="input-text input-group-text w-25"
             type="text"
             placeholder='Digite sua busca...'
             value={searchTerm}

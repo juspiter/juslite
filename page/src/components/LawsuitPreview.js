@@ -5,9 +5,18 @@ const LawsuitPreview = (props) => {
   return (
     <div onClick={() => props.onSelect(props.lawsuit)} className="container-list pt-4">
       <h5>{props.lawsuit.court.toUpperCase()} {props.lawsuit.number} <small>{props.lawsuit.status}<small/></small></h5>
-      <p>Classe: {props.lawsuit.class}</p>
-      <p>Assunto: {props.lawsuit.subject}</p>
-      <p>Juíz/Juíza: {props.lawsuit.judge}</p>
+      <ul class="row align-items-start">
+        <div class="col-6">
+          <div>Classe: {props.lawsuit.class}</div>
+          <div>Assunto: {props.lawsuit.subject}</div>
+          <div>Juíz/Juíza: {props.lawsuit.judge}</div>
+        </div>
+        <div class="col-6"><b>Partes principais:</b>
+          {props.lawsuit.parties.map(party => (
+                  <div>{party['names'][0]}</div>
+              ))}
+        </div>
+      </ul>
     </div>
     );
 }

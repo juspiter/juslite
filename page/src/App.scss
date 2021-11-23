@@ -42,6 +42,10 @@ img.logo {
   color: #61dafb;
 }
 
+.input-text {
+  text-align: left;
+}
+
 h5.info {
   font-size: pixel-to-rem(16px);
 
@@ -55,21 +59,26 @@ table, th, tr, td {
 }
 
 .search-container {
-  min-width: 170px;
+  min-width: 250px;
   /* margin: 50px auto; */
 }
 
 .input-text {
+  border: none;
   background-color: #444;
 	color: whitesmoke;
 	font-size: 16px;
 }
 
 .input-button {
-	border: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+	border-left-width: 2px;
 	border-radius: 5px;
-	background-color: coral;
-	color: black;
+  border-color: #282c34;
+	background-color: #444;
+	color: whitesmoke;
 	font-size: 16px;
 	font-weight: bold;
 	cursor: pointer;
