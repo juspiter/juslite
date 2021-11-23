@@ -1,9 +1,9 @@
 import React from 'react';
 
-const NotProcess = () => {
+const LawsuitNotFound = () => {
 	return (
 		<p>Nenhum processo encontrado.</p>
 	 );
 }
 
-export default NotProcess;
+export default LawsuitNotFound;

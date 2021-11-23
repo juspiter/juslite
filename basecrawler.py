@@ -6,7 +6,14 @@ from bs4 import BeautifulSoup
 
 class BaseCrawler:
     def __init__(self, number: str):
-        url = f"https://www2.tjal.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado={number}&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha="
+        num_t = number.split('.')
+        if num_t[2] == "8" and num_t[3] == "02":
+            url = f"https://www2.tjal.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado={number}&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha="
+            self.court = "tjal"
+        else:
+            url = f"https://esaj.tjce.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado={number}&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha="
+            self.court = "tjce"
+
         try:
             response = requests.get(url, timeout=5)
         except Exception:
@@ -27,7 +34,7 @@ class BaseCrawler:
         if not self.soup:
             return lawsuit
 
-        lawsuit.update({"court": "tjal"})
+        lawsuit.update({"court": self.court})
 
         lawsuit.update({"number": self.soup.find(
             id="numeroProcesso").get_text(strip=True)})
@@ -60,16 +67,26 @@ class BaseCrawler:
         part_table = self.soup.find('table', id="tableTodasPartes")
         if part_table is None:
             part_table = self.soup.find('table', id="tablePartesPrincipais")
-        parts = part_table.find_all('td')
 
-        for part in parts:
-            parties.append(part.get_text('\n', strip=True))
+        parties_types_soup = part_table.find_all(
+            class_="mensagemExibindo tipoDeParticipacao")
+        parties_types = [type.get_text(strip=True) for type in parties_types_soup]
 
+        parties_names_soup = part_table.find_all(class_="nomeParteEAdvogado")
+        parties_names = []
+        for name_group in parties_names_soup:
+            parties_names.append([name for name in name_group.stripped_strings])
+
+        for label, names in zip(parties_types, parties_names):
+            party = {}
+            party.update({"label": label, "names": names})
+
+            parties.append(party)
         return parties
 
     def crawl_lawsuit_changes(self) -> list:
         changes = []
-        
+
         move_table = self.soup.find('tbody', id="tabelaTodasMovimentacoes")
         moves = move_table.find_all('tr')
 
@@ -91,7 +108,7 @@ class BaseCrawler:
         return changes
 
 """
-0000001-24.2009.8.02.0006 
+0000001-24.2009.8.02.0006
 <tr class="fundoClaro">
 	<td valign="top" width="141" style="padding-bottom: 5px" class="label">
 		<span class="mensagemExibindo tipoDeParticipacao">Requerente&nbsp;</span>

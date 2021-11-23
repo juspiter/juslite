@@ -10,7 +10,7 @@ const LawsuitDisplay = (props) =>
       return(
         <>
           <section class="d-inline-flex p-3 bd-highlight align-items-center gap-3">
-            <h3>Nº do processo:<b> {props.proc['number']} (TJAL)</b></h3>
+            <h3>Nº do processo:<b> {props.proc['number']} ({props.proc['court'].toUpperCase()})</b></h3>
             <h5 class="m-1 info p-1 border border-2 rounded-pill">{props.proc['status']}</h5>
           </section>
           <br/>
@@ -25,10 +25,17 @@ const LawsuitDisplay = (props) =>
           <br></br>
           <section>
             <h3><b>Partes do Processo:</b></h3>
-            <ul>
-              {props.proc['parties'].map(part =>
-                <li>{part}</li>)}
-            </ul>
+            {props.proc['parties'].map(party => (
+              <div>
+                <li class="row align-items-start" key={party}>
+                  <div class="col-2"><i>{party['label']}</i></div>
+                  <div class="col-10">{party['names'].map(names => (
+                    <div>{names}</div>
+                  ))}</div>
+                </li>
+                <hr/>
+              </div>
+            ))}
           </section>
           <br></br>
           <section>

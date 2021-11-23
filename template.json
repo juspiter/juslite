@@ -6,11 +6,12 @@
         "class": "",
         "subject": "",
         "judge": "",
-        "parties":
+        "parties":[
             {
-                "party" : "",
+                "label" : "",
                 "names" : ["", ""]
-            },
+            }
+        ],
         "changes": [
             {
                 "date": "xx/xx/xx",

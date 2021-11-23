@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import Welcome from './components/Welcome';
 import SearchingProgressBar from './components/SearchingProgressBar';
-import NotProcess from './components/NotProcess';
+import LawsuitNotFound from './components/LawsuitNotFound';
 import LawsuitList from './components/LawsuitList';
 import LawsuitDisplay from './components/LawsuitDisplay';
 
@@ -62,7 +62,7 @@ const App = () =>
       </header>
       {isWelcome && <Welcome />}
       {isSearching && <SearchingProgressBar />}
-      {requestResponse.length === 0 && !isWelcome && !isSearching && <NotProcess />}
+      {requestResponse.length === 0 && !isWelcome && !isSearching && <LawsuitNotFound />}
       {requestResponse.length === 1 && !isSearching && <LawsuitDisplay proc={requestResponse[0]}/>}
       {requestResponse.length > 1 && !isSearching && <LawsuitList list={requestResponse} />}
     </main>
