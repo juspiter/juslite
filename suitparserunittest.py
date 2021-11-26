@@ -46,6 +46,6 @@ class TestSuitParser(unittest.TestCase):
         ret = SuitParser("0000001-02.2017.8.03.0149")
         self.assertFalse(ret.is_valid)
 
-    def test_09_return_false_if_future_predicion(self):
+    def test_09_return_false_if_future_prediction(self):
         ret = SuitParser("0000001-02.2077.8.02.0149")
         self.assertFalse(ret.is_valid)

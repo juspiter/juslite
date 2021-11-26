@@ -1,5 +1,6 @@
 import datetime
 
+
 class SuitParser:
     def __init__(self, number: str):
         self.number = number
@@ -15,7 +16,7 @@ class SuitParser:
             self.court_is_valid(raw_num) or not
             self.year_is_valid(raw_num)):
             return False
-        self.number = raw_num # substituir por regex
+        self.number = raw_num
         return True
 
     def court_is_valid(self, raw_num: str) -> bool:
