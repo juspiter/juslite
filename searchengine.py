@@ -22,6 +22,8 @@ class SearchEngine:
             query=term,
             fields=['court', 'status', 'class', 'subject', 'judge', 'parties.names'])
         res = s.execute()
+        if res.hits == []:
+            return{"response": [], "status_code": 5, "status": "Nenhum resultado encontrado"}
         return {"response": [hit.to_dict() for hit in res.hits], "status_code": 0, "status": "OK"}
 
     def get_by_number(self, lawsuit) -> dict:
@@ -37,4 +39,8 @@ class SearchEngine:
         s = Search(using=self.es, doc_type='lawsuit') \
             .query('ids', values=[lawsuit.formatted_number])
         res = s.execute()
+
+        if res.hits == []:
+            return{"response": [], "status_code": 4, "status": "Processo desconhecido"}
+
         return {"response": [hit.to_dict() for hit in res.hits], "status_code": 0, "status": "OK"}

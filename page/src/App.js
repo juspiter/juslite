@@ -14,7 +14,7 @@ const App = () =>
   const [isWelcome, setIsWelcome] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [requestResponse, setRequestResponse] = useState([]);
+  const [requestResponse, setRequestResponse] = useState({"response": []});
 
   async function fetchLawsuitsHandler() {
     setIsSearching(true);
@@ -23,7 +23,7 @@ const App = () =>
 
     if (res.ok) {
       const data = await res.json();
-      setRequestResponse(data.response)
+      setRequestResponse(data)
     }
 
     setIsSearching(false);
@@ -62,9 +62,9 @@ const App = () =>
       </header>
       {isWelcome && <Welcome />}
       {isSearching && <SearchingProgressBar />}
-      {requestResponse.length === 0 && !isWelcome && !isSearching && <LawsuitNotFound />}
-      {requestResponse.length === 1 && !isSearching && <LawsuitDisplay proc={requestResponse[0]}/>}
-      {requestResponse.length > 1 && !isSearching && <LawsuitList list={requestResponse} />}
+      {requestResponse.response.length === 0 && !isWelcome && !isSearching && <LawsuitNotFound proc={requestResponse} term={searchTerm}/>}
+      {requestResponse.response.length === 1 && !isSearching && <LawsuitDisplay proc={requestResponse.response[0]}/>}
+      {requestResponse.response.length > 1 && !isSearching && <LawsuitList list={requestResponse.response} />}
     </main>
   );
 }
