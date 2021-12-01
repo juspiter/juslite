@@ -1,0 +1,16 @@
+response.xpath('//td[@class="dadosProcesso"]/b/text()').getall()
+['Processo:  ',					 'Número no TRT de Origem: \r\n\t\t\t\t\t\t\t\t\t\t\t', 'Órgão Judicante: ', '\r\n\t\t\t\t\t\t\t\t\t\t', 'Relator: ', '\r\n\t\t\t\t\t\t\t\t\t\t\t', 'Recorrente(s): ', 'Advogado: ', 'Recorrido(s): ', 'Advogada: ', 'Recorrido(s): ', 'Advogado: ', 'Advogado: ']
+
+response.xpath('//td[@class="dadosProcesso"]/b/font/text()').getall()
+['RR - 1001074-51.2018.5.02.0005', 'ROT-1001074/2018-0005-02.', '7ª Turma', 'Ministro Evandro Pereira Valadão Lopes']
+
+response.xpath('//td[@class="dadosProcesso" and@ style="width: 100px;"]/../*').getall()
+['<td class="dadosProcesso" style="width: 100px;"><b>Recorrente(s): </b></td>', '<td class="dadosProcesso">VERZANI &amp; SANDRINI LTDA.</td>', '<td class="dadosProcesso" style="width: 100px;"><b>Recorrido(s): </b></td>', '<td class="dadosProcesso">MARINETE DE FREITAS</td>', '<td class="dadosProcesso" style="width: 100px;"><b>Recorrido(s): </b></td>', '<td class="dadosProcesso">CONSORCIO EMPREENDEDOR SHOPPING TAMBORE</td>']
+
+
+response.xpath('//tr/td[@class="dadosProcesso"]/../*/text()').getall()
+['\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t', '\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t \r\n\t\t\t\t\t\t\t\t\t\t\t\t\t \r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t', '\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\xa0 (Lei 13.467/2017 - Conector PJe-JT - eSIJ - PJe-JT - Marcadores automatizados - Tramitação Eletrônica)\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t \r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t', '\r\n\t\t\t\t\t\t\t\t\t\t\t', '\r\n\t\t\t\t\t\t\t\t\t\t', '\r\n\t\t\t\t\t\t\t\t\t\t\t\t', 'VERZANI & SANDRINI LTDA.', 'Dr. Marcelo Tostes de Castro Maia', 'MARINETE DE FREITAS', 'Dra. Mônica Campelino Julião do Nascimento', 'CONSORCIO EMPREENDEDOR SHOPPING TAMBORE', 'Dr. Ana Luiza Wambier', 'Dr. Andréia Lopes de Oliveira Ferreira']
+
+
+
+response.xpath('//td[@class="historicoProcesso"]/*/text()|//td[@class="historicoProcesso"]/*/*/*/*/text()').getall()
