@@ -53,3 +53,11 @@ class TestBaseCrawler(TestCase):
     def test_12_if_lawsuit_judge_is_correct(self):
         result = self.crawl.crawl_lawsuit()
         self.assertEqual(result["judge"], "Marina Gurgel da Costa")
+
+    def test_13_if_lawsuit_foro_is_correct(self):
+        result = self.crawl.crawl_lawsuit()
+        self.assertEqual(result["foro"], "Foro de Santana do Ipanema")
+
+    def test_14_if_lawsuit_vara_is_correct(self):
+        result = self.crawl.crawl_lawsuit()
+        self.assertEqual(result["vara"], "2ª Vara de Santana do Ipanema (Sucessões)")

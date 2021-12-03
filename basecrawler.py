@@ -51,6 +51,12 @@ class BaseCrawler:
         lawsuit.update({"subject": self.soup.find(
             id="assuntoProcesso").get_text(strip=True)})
 
+        lawsuit.update({"foro": self.soup.find(
+            id="foroProcesso").get_text(strip=True)})
+
+        lawsuit.update({"vara": self.soup.find(
+            id="varaProcesso").get_text(strip=True)})
+
         try:
             lawsuit.update({"judge": self.soup.find(
                 id="juizProcesso").get_text(strip=True)})

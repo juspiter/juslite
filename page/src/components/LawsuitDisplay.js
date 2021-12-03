@@ -16,9 +16,14 @@ const LawsuitDisplay = (props) =>
           <br/>
           <section class="container">
             <div class="row">
-              <h5 class="info col">Classe<span class="row m-0">{props.proc['class']}</span></h5>
-              <h5 class="info col">Assunto<span class="row m-0">{props.proc['subject']}</span></h5>
-              <h5 class="info col">Juiz/Juíza<span class="row m-0">{props.proc['judge']}</span></h5>
+              <h5 class="info col">Classe:<span class="row m-0">{props.proc['class']}</span></h5>
+              <h5 class="info col">Assunto:<span class="row m-0">{props.proc['subject']}</span></h5>
+              <h5 class="info col"></h5>
+            </div>
+            <div class="row mt-2">
+              <h5 class="info col">Foro:<span class="row m-0">{props.proc['foro']}</span></h5>
+              <h5 class="info col">Vara:<span class="row m-0">{props.proc['vara']}</span></h5>
+              <h5 class="info col">Juiz/Juíza:<span class="row m-0">{props.proc['judge']}</span></h5>
             </div>
           </section>
           <hr></hr>
@@ -50,7 +55,7 @@ const LawsuitDisplay = (props) =>
             {props.proc['changes'].map(change => (
               <div>
                 <li class="row align-items-start" key={change}>
-                  <div class="col-2"><i>{change['date']}</i></div>
+                  <div class="col-2"><b>{change['date']}</b></div>
                   <div class="col-10">{change['title']}<br/>{change['content']}</div>
                 </li>
                 <hr/>
