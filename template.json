@@ -8,6 +8,10 @@
         "foro": "",
         "vara": "",
         "judge": "",
+        "mov_relevante": {
+            "data": "",
+            "titulo": ""
+        },
         "parties":[
             {
                 "label" : "",

@@ -65,6 +65,7 @@ class BaseCrawler:
 
         lawsuit.update({"parties": self.crawl_lawsuit_parties()})
         lawsuit.update({"changes": self.crawl_lawsuit_changes()})
+        lawsuit.update({"mov_relevante": self.crawl_lawsuit_mov_relevante(lawsuit['changes'])})
         return lawsuit
 
     def crawl_lawsuit_parties(self) -> list:
@@ -113,17 +114,17 @@ class BaseCrawler:
 
         return changes
 
-"""
-0000001-24.2009.8.02.0006
-<tr class="fundoClaro">
-	<td valign="top" width="141" style="padding-bottom: 5px" class="label">
-		<span class="mensagemExibindo tipoDeParticipacao">Requerente&nbsp;</span>
-	</td>
-	<td class="nomeParteEAdvogado" width="*" align="left" style="padding-bottom: 5px">
-					Cláudio Francisco Demétrio Lemos
-				<br />
-				<span class="mensagemExibindo">Advogado:&nbsp;</span>
-						Jânio Cavalcante Gonzaga
-				&nbsp;
-	</td>
-</tr> """
+    def crawl_lawsuit_mov_relevante(self, changes: list) -> dict:
+        mov_relevante = {}
+        for change in changes:
+            if 'publicado' in change['title'].lower():
+                mov_relevante['titulo'] = change['title']
+                mov_relevante['data'] = change['date']
+                return mov_relevante
+            if 'julgado' in change['title'].lower():
+                mov_relevante['titulo'] = change['title']
+                mov_relevante['data'] = change['date']
+                return mov_relevante
+        mov_relevante['data'] = changes[0]['date']
+        mov_relevante['titulo'] = changes[0]['title']
+        return mov_relevante
