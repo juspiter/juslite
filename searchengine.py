@@ -4,7 +4,7 @@ from suitparser import SuitParser
 import re
 
 
-COURT_LIST = ['tjal', 'tjce']
+COURT_LIST = ['tjal', 'tjce', 'tst']
 
 class SearchEngine:
     def __init__(self, addr) -> None:
@@ -48,7 +48,7 @@ class SearchEngine:
         s = Search(using=self.es, doc_type="lawsuit").query('multi_match',
             query=term,
             fields=['court', 'status', 'class', 'subject', 'foro', 'vara', 'judge', 'parties.names'])
-        if sort == 'data':
+        if sort == 'recente':
             s = s.sort('-mov_relevante.data')
         res = s.execute()
         if res.hits == []:

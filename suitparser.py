@@ -17,7 +17,7 @@ class SuitParser:
         return True
 
     def court_is_valid(self) -> bool:
-        if self.number[13] == '8' and self.number[14:16] in ['02', '06']:
+        if self.number[13:16] in ['802', '806', '502']:
             return True
         return False
 
