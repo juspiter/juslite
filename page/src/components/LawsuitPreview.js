@@ -10,6 +10,7 @@ const LawsuitPreview = (props) => {
           <div>Classe: {props.lawsuit.class}</div>
           <div>Assunto: {props.lawsuit.subject}</div>
           <div>Juíz/Juíza: {props.lawsuit.judge}</div>
+          <div>Movimentação mais relevante: {props.lawsuit.mov_relevante.data} - {props.lawsuit.mov_relevante.titulo}</div>
         </div>
         <div class="col-6"><b>Partes principais:</b>
           {props.lawsuit.parties.map(party => (

@@ -26,3 +26,13 @@ for line in lines:
 
 # crawl = BaseCrawler("0218226-29.2020.8.06.0001")
 # print(crawl.crawl_lawsuit())
+
+
+
+# curl -X PUT "localhost:9200/tjal?pretty"
+# curl -X PUT "localhost:9200/tjce?pretty"
+# curl -X PUT "localhost:9200/_all/_mappings?pretty" -H 'Content-Type: application/json' -d'
+# {
+#     "dynamic_date_formats": ["dd/MM/yyyy"]
+# }
+# '

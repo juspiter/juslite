@@ -11,7 +11,7 @@ class Storage:
     def add_lawsuit(self, lawsuit: dict):
         if lawsuit == {}:
             return
-        self.es.index(index=lawsuit["court"], id=lawsuit["number"], body=lawsuit, doc_type="lawsuit")
+        self.es.index(index=lawsuit["court"], id=lawsuit["number"], body=lawsuit)
 
     def search_lawsuits(self, term: str) -> list:
         s = Search(using=self.es, doc_type="lawsuit").query('multi_match',
