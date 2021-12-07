@@ -6,6 +6,7 @@ import SearchingProgressBar from './components/SearchingProgressBar';
 import LawsuitNotFound from './components/LawsuitNotFound';
 import LawsuitList from './components/LawsuitList';
 import LawsuitDisplay from './components/LawsuitDisplay';
+import SortOptions from './components/SortOptions';
 
 import './App.scss';
 
@@ -15,11 +16,12 @@ const App = () =>
   const [isSearching, setIsSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [requestResponse, setRequestResponse] = useState({"response": []});
+  const [sortOption, setSortOption] = useState("relevante");
 
   async function fetchLawsuitsHandler() {
     setIsSearching(true);
 
-    const res = await fetch("http://localhost:3001/lawsuit/" + searchTerm);
+    const res = await fetch("http://localhost:3001/lawsuit/" + searchTerm + "?sort=" + sortOption);
 
     if (res.ok) {
       const data = await res.json();
@@ -36,11 +38,15 @@ const App = () =>
 
   const handleSearchSubmit = event => {
     event.preventDefault();
-    setIsWelcome(false);
 
     if (searchTerm.length > 2) {
+      setIsWelcome(false);
       fetchLawsuitsHandler();
     }
+  }
+
+  const sortOptionHandler = selectedSort => {
+    setSortOption(selectedSort);
   }
 
   return (
@@ -58,6 +64,7 @@ const App = () =>
             />
           <button className="input-group-text input-button" type='submit'>Buscar</button>
         </form>
+        <SortOptions selected={sortOption} onChangeSort={sortOptionHandler} />
         <hr/>
       </header>
       {isWelcome && <Welcome />}
