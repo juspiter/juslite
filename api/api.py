@@ -7,7 +7,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-se = SearchEngine('172.17.0.2:9200')
+se = SearchEngine('juslite_elastic:9200')
 
 
 @app.route("/lawsuit/<path:endpoint>", methods=["GET"])

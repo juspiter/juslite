@@ -7,23 +7,23 @@ from teste_scrapy.tstSpider.tstSpider.spiders.tst_spider import TstSpider
 # docker run -d --name juslitedb -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" --memory="1g" elasticsearch:7.14.2
 
 
-# storage = Storage('172.17.0.2:9200')
+storage = Storage('juslite_elastic:9200')
 
-# file = open('tjce_processos.csv', 'r')
-# lines = file.readlines()
+file = open('tjce_processos.csv', 'r')
+lines = file.readlines()
 
-# for line in lines:
-#     crawl = BaseCrawler(line[:-1])
-#     storage.add_lawsuit(crawl.crawl_lawsuit())
-#     print("crawled process: " + line[:-1])
+for line in lines:
+    crawl = BaseCrawler(line[:-1])
+    storage.add_lawsuit(crawl.crawl_lawsuit())
+    print("crawled process: " + line[:-1])
 
-# file = open('tjal_processos.csv', 'r')
-# lines = file.readlines()
+file = open('tjal_processos.csv', 'r')
+lines = file.readlines()
 
-# for line in lines:
-#     crawl = BaseCrawler(line[:-1])
-#     storage.add_lawsuit(crawl.crawl_lawsuit())
-#     print("crawled process: " + line[:-1])
+for line in lines:
+    crawl = BaseCrawler(line[:-1])
+    storage.add_lawsuit(crawl.crawl_lawsuit())
+    print("crawled process: " + line[:-1])
 
 process = CrawlerProcess(settings={
     "FEEDS": {

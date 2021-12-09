@@ -1,11 +1,9 @@
 from unittest import TestCase
-
 from searchengine import SearchEngine
-from storage import Storage
 
 
 class TestSearchEngine(TestCase):
-    search = SearchEngine('172.17.0.2:9200')
+    search = SearchEngine('juslite_elastic:9200')
 
     def test_01_search_by_number_return_one_lawsuit(self):
         num = "0000001-03.2011.8.02.0055"
