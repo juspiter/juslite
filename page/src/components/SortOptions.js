@@ -7,10 +7,10 @@ const SortOptions = (props) => {
   return (
       <>
         <div>
-          <label>Ordenar por: </label>
-          <select value={props.selected} onChange={sortChangeHandler}>
-            <option value='relevante'>Relevante</option>
-            <option value='recente'>Recente</option>
+          {/* <label>Ordenar por: </label> */}
+          <select className="input-dropdown input-group input-group-text" value={props.selected} onChange={sortChangeHandler}>
+            <option value='relevante'>Mais relevante</option>
+            <option value='recente'>Mais recente</option>
           </select>
         </div>
       </>
