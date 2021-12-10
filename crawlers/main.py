@@ -38,13 +38,4 @@ process.start()
 # print(crawl.crawl_lawsuit())
 
 
-# curl -X PUT "localhost:9200/tjal?pretty"
-# curl -X PUT "localhost:9200/tjce?pretty"
-# curl -X PUT "localhost:9200/tst?pretty"
-# curl -X PUT "localhost:9200/_all/_mappings?pretty" -H 'Content-Type: application/json' -d'
-# {
-#     "dynamic_date_formats": ["dd/MM/yyyy"]
-# }
-# '
-
 # export PYTHONPATH=/home/rafa/Documents/projects/juslite:/home/rafa/Documents/projects/juslite/teste_scrapy/tstSpider/tstSpider

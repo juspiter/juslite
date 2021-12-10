@@ -6,17 +6,29 @@ version: '3'
 services:
   juslite_elastic:
     image: elasticsearch:7.14.2
+    container_name: juslite_elastic
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - 9200:9200
+      - 9300:9300
     environment:
       - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
-    # command: command
     volumes:
       - juslite_data:/usr/share/elasticsearch/data
   juslite_api:
     build: ./api
+    container_name: juslite_api
+    ports:
+      - 3001:3001
+  juslite_crawlers:
+    build: ./crawlers
+    container_name: juslite_crawlers
+  juslite_page:
+    build: ./page
+    container_name: juslite_page
+    ports:
+      - 80:3000
+
 
 volumes:
   juslite_data:

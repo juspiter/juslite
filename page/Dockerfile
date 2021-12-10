@@ -8,7 +8,7 @@ COPY package.json .
 COPY package-lock.json .
 
 # atualizar npm
-RUN npm install --silent
+RUN npm install
 
 COPY ./src/ ./src/
 COPY ./public/ ./public/
