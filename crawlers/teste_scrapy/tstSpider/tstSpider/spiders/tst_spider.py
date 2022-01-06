@@ -85,7 +85,7 @@ class TstSpider(scrapy.Spider):
             partes.append(parte)
         processo['parties'] = partes
 
-        storage = Storage('172.17.0.2:9200')
+        storage = Storage('juslite_elastic:9200')
         storage.add_lawsuit(processo)
 
         yield processo

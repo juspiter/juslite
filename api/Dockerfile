@@ -9,4 +9,6 @@ COPY . .
 
 EXPOSE 3001
 
-CMD ["sleep", "60", "--", "python", "api.py"]
+RUN chmod +x wait-for-it.sh
+
+CMD [ "./wait-for-it.sh", "juslite_elastic:9200", "--timeout=0", "--", "python3", "api.py" ]

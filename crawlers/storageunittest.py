@@ -4,7 +4,7 @@ from storage import Storage
 
 
 class TestStorage(unittest.TestCase):
-    conn = Storage('172.17.0.2:9200')
+    conn = Storage('juslite_elastic:9200')
 
     def test_1_if_storage_return_elasticsearch_client(self):
         self.assertTrue(self.conn.es.ping())

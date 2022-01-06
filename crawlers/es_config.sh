@@ -8,3 +8,5 @@ curl -X PUT "juslite_elastic:9200/_all/_mappings?pretty" -H 'Content-Type: appli
     "dynamic_date_formats": ["dd/MM/yyyy"]
 }
 '
+
+python3 main.py

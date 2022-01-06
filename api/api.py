@@ -17,4 +17,4 @@ def query_lawsuit(endpoint):
 
 
 if __name__ == '__main__':
-    app.run(host="localhost", port=3001)
+    app.run(host="juslite_api", port=3001)
