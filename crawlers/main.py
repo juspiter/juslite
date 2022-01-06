@@ -25,11 +25,7 @@ for line in lines:
     storage.add_lawsuit(crawl.crawl_lawsuit())
     print("crawled process: " + line[:-1])
 
-# process = CrawlerProcess(settings={
-#     "FEEDS": {
-#         "processotrabalhista.json": {"format": "json"}
-#     },
-# })
+process = CrawlerProcess(settings={})
 
 process.crawl(TstSpider)
 process.start()
