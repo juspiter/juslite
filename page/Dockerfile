@@ -9,10 +9,12 @@ COPY package-lock.json .
 
 # atualizar npm
 RUN npm install
+RUN npm install react-scripts@4.0.3 -g
 
-COPY ./src/ ./src/
-COPY ./public/ ./public/
+COPY . .
 
 EXPOSE 3000
+
+RUN chown -R node:node /app/node_modules
 
 CMD ["npm", "start"]
