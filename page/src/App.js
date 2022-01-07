@@ -21,7 +21,7 @@ const App = () =>
   async function fetchLawsuitsHandler() {
     setIsSearching(true);
 
-    const res = await fetch("http://localhost:3001/lawsuit/" + searchTerm + "?sort=" + sortOption);
+    const res = await fetch("https://juslite.42sp.org.br/api/lawsuit/" + searchTerm + "?sort=" + sortOption);
 
     if (res.ok) {
       const data = await res.json();
