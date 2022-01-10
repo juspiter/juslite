@@ -15,14 +15,16 @@ services:
       - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
     volumes:
       - juslite_data:/usr/share/elasticsearch/data
+    restart: always
 
   juslite_api:
     build: ./api
     container_name: juslite_api
-    ports:
-      - 3001:3001
+    expose:
+      - 3001
     volumes:
       - ./api:/app
+    restart: always
 
   juslite_crawlers:
     build: ./crawlers
@@ -33,12 +35,22 @@ services:
   juslite_page:
     build: ./page
     container_name: juslite_page
-    ports:
-      - 80:3000
+    expose:
+      - 3000
     volumes:
       - ./page:/app
       - /app/node_modules
+    restart: always
 
+  juslite_proxy:
+    image: nginx:alpine
+    container_name: juslite_proxy
+    ports:
+        - 80:80
+        - 443:443
+    volumes:
+        - ./proxy:/etc/nginx/conf.d
+    restart: always
 
 volumes:
   juslite_data:
