@@ -17,7 +17,7 @@ const SearchBox = () => {
   }
   return (
     <>
-      <form className="input-group mb-3" onSubmit={handleSearchSubmit}>
+      <form className="input-group mb-3 justify-content-center" onSubmit={handleSearchSubmit}>
         <input
           className="input-text input-group-text w-25"
           type="text"
