@@ -12,14 +12,14 @@ const SearchBox = () => {
   const handleSearchSubmit = event => {
     event.preventDefault();
     const searchTermInput = searchTermRef.current.value;
-    console.log(searchTermInput);
+    // console.log(searchTermInput);
     navigate("/busca/" + searchTermInput);
   }
   return (
     <>
-      <form className="input-group mb-3 justify-content-center" onSubmit={handleSearchSubmit}>
+      <form className="input-group" onSubmit={handleSearchSubmit}>
         <input
-          className="input-text input-group-text w-25"
+          className="input-text input-group-text"
           type="text"
           placeholder='Digite sua busca...'
           ref={searchTermRef}

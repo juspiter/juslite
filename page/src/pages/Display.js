@@ -26,13 +26,13 @@ const Display = () => {
 
 	if (!isSearching && requestResponse.response.length > 0){
   return (
-    <>
+    <div className="container">
       <Header />
       <LawsuitDisplay proc={requestResponse.response[0]}/>
-    </>
+    </div>
   )
 	}
-	else { return(<div><Header /><h5>Buscando...</h5></div>) }
+	else { return(<div className="container"><Header /><h5>Buscando...</h5></div>) }
 }
 
 export default Display;

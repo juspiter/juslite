@@ -38,7 +38,7 @@ const Result = () => {
 
   if (!isSearching && requestResponse.response.length > 1) {
     return (
-      <div>
+      <div className="container">
         <Header />
         <SortOptions selected={sortOption} onChangeSort={sortOptionHandler} />
         <LawsuitList list={requestResponse.response} />
@@ -48,12 +48,12 @@ const Result = () => {
   else if (!isSearching && requestResponse.response.length === 1) {
     navigate("/exibir/" + requestResponse.response[0].number);//trocar por useNavigate
     return (
-      <div>
+      <div className="container">
         <Header />
       </div>
     )
   }
-  else { return(<div><Header /><h5>Buscando...</h5></div>) }
+  else { return(<div className="container"><Header /><h5>Buscando...</h5></div>) }
 }
 
 export default Result;
