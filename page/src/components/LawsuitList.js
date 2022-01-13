@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import LawsuitPreview from './LawsuitPreview';
-import LawsuitDisplay from './LawsuitDisplay';
 
 const LawsuitList = (props) => {
 

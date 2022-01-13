@@ -55,6 +55,14 @@ table, th, tr, td {
   border: 1px solid white;
 }
 
+a {
+  color: coral;
+}
+
+a:hover {
+  color: rgb(245, 73, 11);
+}
+
 .search-container {
   min-width: 250px;
   /* margin: 50px auto; */

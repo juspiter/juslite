@@ -1,15 +1,7 @@
-
-// import { useState } from 'react';
-
 import Welcome from './pages/Welcome';
 import Result from './pages/Result';
 import Header from './components/Header';
 import Display from './pages/Display';
-// import SearchingProgressBar from './components/SearchingProgressBar';
-// import LawsuitNotFound from './components/LawsuitNotFound';
-import LawsuitList from './components/LawsuitList';
-// import LawsuitDisplay from './components/LawsuitDisplay';
-// import SortOptions from './components/SortOptions';
 import { Routes, Route} from 'react-router-dom';
 
 import './App.scss';
@@ -20,7 +12,7 @@ const App = () => {
       <Route path="/" element={<Welcome />}/>
       <Route path="/busca/:term" element={<Result />}/>
       <Route path="/exibir/:number" element={<Display />}/>
-      <Route path="*" element={<Header />}/> //link inválido
+      <Route path="*" element={<Header />}/>
     </Routes>
    );
 }

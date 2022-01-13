@@ -13,7 +13,9 @@ const SearchBox = () => {
     event.preventDefault();
     const searchTermInput = searchTermRef.current.value;
     // console.log(searchTermInput);
-    navigate("/busca/" + searchTermInput);
+    if (searchTermInput.length > 2) {
+      navigate("/busca/" + searchTermInput);
+    }
   }
   return (
     <>

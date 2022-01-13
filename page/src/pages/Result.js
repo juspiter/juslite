@@ -1,11 +1,9 @@
 import { React, useEffect, useState } from 'react';
-// import LawsuitPreview from "../components/LawsuitPreview.js";
-import LawsuitList from "../components/LawsuitList.js";
-import LawsuitDisplay from '../components/LawsuitDisplay';
-import fetchRequest from "../components/fetch-request";
-import Header from '../components/Header.js';
 import { useParams, useNavigate } from 'react-router-dom';
+import LawsuitList from "../components/LawsuitList.js";
+import LawsuitNotFound from "../components/LawsuitNotFound";
 import SortOptions from '../components/SortOptions.js';
+import Header from '../components/Header.js';
 
 
 const Result = () => {
@@ -50,6 +48,14 @@ const Result = () => {
     return (
       <div className="container">
         <Header />
+      </div>
+    )
+  }
+  else if (!isSearching && requestResponse.response.length === 0) {
+    return (
+      <div className="container">
+        <Header />
+        <LawsuitNotFound proc={requestResponse} term={term}/>
       </div>
     )
   }
