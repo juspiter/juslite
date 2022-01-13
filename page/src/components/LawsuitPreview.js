@@ -1,9 +1,10 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 const LawsuitPreview = (props) => {
+  const navigate = useNavigate();
   return (
-    <div onClick={() => props.onSelect(props.lawsuit)} className="container-list pt-4">
+    <div onClick={() => navigate("/exibir/" + (props.lawsuit.number))} className="container-list pt-4">
       <h5>{props.lawsuit.court.toUpperCase()} {props.lawsuit.number} <small>{props.lawsuit.status}<small/></small></h5>
       <ul className="row align-items-start">
         <div className="col-6">

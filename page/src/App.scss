@@ -10,21 +10,18 @@ img.logo {
   position: absolute;
 }
 
-#header_ img{
-  height:60px;
-	position: absolute;
-}
-
-#header_ h1{
-  margin:0;
-	line-height: 30px;
-	margin-left: 70px;
-	padding-top: 15px;
-  text-align: left;
-}
-
-#header_ form{
-  margin-top: 30px;
+#header_ {
+  // height: 180px;
+  img{
+    height:60px;
+    width: 60px;
+    // padding-bottom: 30px;
+	  // position: absolute;
+  }
+  div {
+    // background-color: white;
+    align-items: center;
+  }
 }
 
 .App-header {
@@ -56,6 +53,14 @@ h5.info {
 
 table, th, tr, td {
   border: 1px solid white;
+}
+
+a {
+  color: coral;
+}
+
+a:hover {
+  color: rgb(245, 73, 11);
 }
 
 .search-container {
@@ -94,3 +99,4 @@ table, th, tr, td {
 
 @import "partials/LawsuitPreview.scss";
 @import "partials/SortOptions.scss";
+@import "partials/Welcome.scss";
