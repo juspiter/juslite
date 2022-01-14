@@ -1,28 +1,56 @@
 [
     {
-        "court": "tjal",
-        "number": "0710802-55.2018.8.02.0001",
-        "status": "Em de grau de recurso",
-        "class": "",
-        "subject": "",
-        "foro": "",
-        "vara": "",
-        "judge": "",
-        "mov_relevante": {
+        "tribunal": "tjal",
+        "numero": "0710802-55.2018.8.02.0001",
+        "url_tribunal": "",
+        "sigilo": false,
+        "situacao": "Em de grau de recurso",
+
+        "info_header": [
+            {
+                "titulo": "14/01/2022",
+                "conteudo": "Remetido recurso"
+            },
+            {
+                "titulo": "Assunto",
+                "conteudo": "Dano material"
+            },
+            {
+                "titulo": "Classe",
+                "conteudo": "Procedimento comum cível"
+            },
+            {
+                "titulo": "Juiz",
+                "conteudo": "João José Maria"
+            },
+            {
+                "titulo": "Foro",
+                "conteudo": "Foro de Maceió"
+            },
+            {
+                "titulo": "Vara",
+                "conteudo": "4ª Vara"
+            }
+        ],
+
+        "ultima_mov": {
             "data": "",
             "titulo": ""
         },
-        "parties":[
+
+        "partes":[
             {
-                "label" : "",
-                "names" : ["", ""]
+                "titulo" : "",
+                "nomes" : ["", ""]
             }
         ],
-        "changes": [
+
+        "moves": [
             {
-                "date": "xx/xx/xx",
-                "title": "",
-                "content": ""
+                "data": "xx/xx/xx",
+                "titulo": "",
+                "conteudo": "",
+                "doc": "url.pdf"
             }
         ]
     }
