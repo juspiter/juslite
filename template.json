@@ -2,15 +2,14 @@
     {
         "tribunal": "tjal",
         "numero": "0710802-55.2018.8.02.0001",
-        "url_tribunal": "",
+        "url": "",
         "sigilo": false,
         "situacao": "Em de grau de recurso",
-
+        "partes_principais": {
+            "parte1": "parte1",
+            "parte2": "parte2"
+        },
         "info_header": [
-            {
-                "titulo": "14/01/2022",
-                "conteudo": "Remetido recurso"
-            },
             {
                 "titulo": "Assunto",
                 "conteudo": "Dano material"
@@ -38,7 +37,7 @@
             "titulo": ""
         },
 
-        "partes":[
+        "partes_todas":[
             {
                 "titulo" : "",
                 "nomes" : ["", ""]
