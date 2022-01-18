@@ -40,7 +40,8 @@
         "partes_todas":[
             {
                 "titulo" : "",
-                "nomes" : ["", ""]
+                "nomes" : [""],
+                "outros": ["",""]
             }
         ],
 
