@@ -111,5 +111,3 @@ class EsajSpider(scrapy.Spider):
         info_partes['parte1'] = partes.xpath(".//tr[1]/td[@class='nomeParteEAdvogado'][1]/text()[1]").get().strip('\n\t ')
         info_partes['parte2'] = partes.xpath(".//tr[2]/td[@class='nomeParteEAdvogado'][1]/text()[1]").get().strip('\n\t ')
         return info_partes
-
-further development of Scrapy crawler for eSAJ court websites
