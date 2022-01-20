@@ -21,6 +21,10 @@ class EsajSpider(scrapy.Spider):
         self.start_urls = []
         file = open('/home/anderson/Dev/42_labs/juslite/crawlers/tjal_processos.csv', 'r')
         lines = file.readlines()
+        file.close()
+        file = open('/home/anderson/Dev/42_labs/juslite/crawlers/tjce_processos.csv', 'r')
+        lines += file.readlines()
+        file.close()
         for line in lines:
             self.start_urls.append(self.make_url(line))
         for url in self.start_urls:
@@ -75,6 +79,8 @@ class EsajSpider(scrapy.Spider):
             this_move['titulo'] = move.xpath("./td[@class='descricaoMovimentacao']/text()").get().strip('\n\t ')
             this_move['conteudo'] = move.xpath("./td[@class='descricaoMovimentacao']/span/text()").get().strip('\n\t ')
             this_move['doc'] = move.xpath("./td/a[@class='linkMovVincProc']/@href").get()
+            if this_move['doc'] == "#liberarAutoPorSenha":
+                this_move['doc'] = "doc_sigilo"
             info_moves.append(this_move)
         return info_moves
 
