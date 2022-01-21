@@ -44,7 +44,7 @@ const Result = () => {
     )
   }
   else if (!isSearching && requestResponse.response.length === 1) {
-    navigate("/exibir/" + requestResponse.response[0].number);//trocar por useNavigate
+    navigate("/exibir/" + requestResponse.response[0].numero);//trocar por useNavigate
     return (
       <div className="container">
         <Header />
