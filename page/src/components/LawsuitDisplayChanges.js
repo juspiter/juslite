@@ -11,11 +11,11 @@ const LawsuitDisplayChanges = (props) => {
         </li>
         <hr />
       </div>
-      {props.proc['changes'].map(change => (
+      {props.proc['moves'].map(change => (
         <div>
           <li className="row align-items-start" key={change}>
-            <div className="col-2"><b>{change['date']}</b></div>
-            <div className="col-10">{change['title']}<br />{change['content']}</div>
+            <div className="col-2"><b>{change['data']}</b></div>
+            <div className="col-10">{change['titulo']}<br />{change['conteudo']}</div>
           </li>
           <hr />
         </div>

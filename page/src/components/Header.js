@@ -8,7 +8,7 @@ const Header = () => {
       <div className="container">
         <div className="row">
           <div className="col-1">
-            <Link to="/"><img className="" src="/image/juspiter.png" alt="Imagem vetorial do planeta jupiter com uma lupa na parte inferior" /></Link>
+            <Link to="/"><img className="" src="/image/logo.svg" alt="Imagem vetorial do planeta jupiter com uma lupa na parte inferior" /></Link>
           </div>
           <div className="col-11" id="searchbox">
             <SearchBox />
