@@ -1,4 +1,5 @@
 import scrapy
+from storage import Storage
 
 
 #"https://www2.tjal.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado={number}&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha="
@@ -19,10 +20,10 @@ class EsajSpider(scrapy.Spider):
 
     def start_requests(self):
         self.start_urls = []
-        file = open('/home/anderson/Dev/42_labs/juslite/crawlers/tjal_processos.csv', 'r')
+        file = open('tjal_processos.csv', 'r')
         lines = file.readlines()
         file.close()
-        file = open('/home/anderson/Dev/42_labs/juslite/crawlers/tjce_processos.csv', 'r')
+        file = open('tjce_processos.csv', 'r')
         lines += file.readlines()
         file.close()
         for line in lines:
@@ -68,6 +69,9 @@ class EsajSpider(scrapy.Spider):
             processo['tribunal'] = processo['url'].split('.')[1]
             processo['numero'] = processo['url'].split('=')[-1]
 
+        storage = Storage('juslite_elastic:9200')
+        storage.add_lawsuit(processo)
+
         yield processo
 
     def get_info_moves(self, moves):
@@ -85,13 +89,14 @@ class EsajSpider(scrapy.Spider):
         return info_moves
 
     def get_info_header(self, header):
-        info_header = []
+        info_header = {}
 
-        for head in header.xpath("./div[2]/div"):
+        for i, head in enumerate(header.xpath("./div[2]/div")):
             this_header = {}
             this_header['titulo'] = head.xpath("./span/text()").get().strip('\n\t ')
             this_header['conteudo'] = head.xpath("./div/span/text()").get().strip('\n\t ')
-            info_header.append(this_header)
+            # info_header.append(this_header)
+            info_header['info' + str(i)] = this_header
         return info_header
 
     def get_info_partes_todas(self, partes):

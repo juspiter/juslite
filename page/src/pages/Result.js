@@ -20,7 +20,7 @@ const Result = () => {
   async function fetchLawsuitsHandler() {
     setIsSearching(true);
 
-    const res = await fetch("https://juslite.42sp.org.br/api/lawsuit/" + term + "?sort=" + sortOption);
+    const res = await fetch("http://localhost/api/lawsuit/" + term + "?sort=" + sortOption);
 
     if (res.ok) {
       const data = await res.json();

@@ -9,28 +9,28 @@
             "parte1": "parte1",
             "parte2": "parte2"
         },
-        "info_header": [
-            {
-                "titulo": "Assunto",
-                "conteudo": "Dano material"
-            },
-            {
+        "info_header": {
+            "info0": {
                 "titulo": "Classe",
                 "conteudo": "Procedimento comum cível"
             },
-            {
-                "titulo": "Juiz",
-                "conteudo": "João José Maria"
+            "info1": {
+                "titulo": "Assunto",
+                "conteudo": "Dano material"
             },
-            {
+            "info2": {
                 "titulo": "Foro",
                 "conteudo": "Foro de Maceió"
             },
-            {
+            "info3": {
                 "titulo": "Vara",
                 "conteudo": "4ª Vara"
+            },
+            "info4": {
+                "titulo": "Juiz",
+                "conteudo": "João José Maria"
             }
-        ],
+        },
 
         "ultima_mov": {
             "data": "",

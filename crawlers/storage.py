@@ -11,12 +11,12 @@ class Storage:
     def add_lawsuit(self, lawsuit: dict):
         if lawsuit == {}:
             return
-        self.es.index(index=lawsuit["court"], id=lawsuit["number"], body=lawsuit)
+        self.es.index(index=lawsuit["tribunal"], id=lawsuit["numero"], body=lawsuit)
 
     def search_lawsuits(self, term: str) -> list:
         s = Search(using=self.es, doc_type="lawsuit").query('multi_match',
             query=term,
-            fields=['court', 'number', 'status', 'class', 'subject', 'judge', 'parties.names'])
+            fields=['tribunal', 'numero', 'situacao', 'info_header.info*.conteudo', 'partes_todas*.nomes'])
 
         res = s.execute()
         return {"response": [hit.to_dict() for hit in res.hits]}

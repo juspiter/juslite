@@ -36,9 +36,9 @@ class SearchEngine:
         else:
             s = Search(using=self.es, doc_type="lawsuit", index=court).query('multi_match',
             query=term,
-            fields=['status', 'class', 'subject', 'foro', 'vara', 'judge', 'parties.names'])
+            fields=['numero', 'situacao', 'info_header.info*.conteudo', 'partes_todas*.nomes'])
         if sort == 'recente':
-            s = s.sort('-mov_relevante.data')
+            s = s.sort('-ultima_mov.data')
         res = s.execute()
         if res.hits == []:
             return{"response": [], "status_code": 5, "status": "Nenhum resultado encontrado"}
@@ -47,9 +47,9 @@ class SearchEngine:
     def get_by_term(self, term: str, sort: str) -> dict:
         s = Search(using=self.es, doc_type="lawsuit").query('multi_match',
             query=term,
-            fields=['court', 'status', 'class', 'subject', 'foro', 'vara', 'judge', 'parties.names'])
+            fields=['tribunal', 'numero', 'situacao', 'info_header.info*.conteudo', 'partes_todas*.nomes'])
         if sort == 'recente':
-            s = s.sort('-mov_relevante.data')
+            s = s.sort('-ultima_mov.data')
         res = s.execute()
         if res.hits == []:
             return{"response": [], "status_code": 5, "status": "Nenhum resultado encontrado"}

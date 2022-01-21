@@ -5,7 +5,7 @@ import About from "../components/About.js";
 const Welcome = () => {
   return (
     <div id="welcome_">
-      <img src="/image/juspiter.png" alt="Imagem vetorial do planeta jupiter com uma lupa na parte inferior" />
+      <img src="/image/logo.svg" alt="Imagem vetorial do planeta jupiter com uma lupa na parte inferior" />
       <h1>Juslite</h1>
       <div><SearchBox /></div>
       <About />
