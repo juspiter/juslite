@@ -14,5 +14,5 @@ class StoragePipeline:
         self.storage = Storage('juslite_elastic:9200')
 
     def process_item(self, item, spider):
-        self.storage.add_lawsuit(ItemAdapter(item))
+        self.storage.add_lawsuit(item)
         return item

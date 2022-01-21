@@ -1,8 +1,4 @@
 import scrapy
-from storage import Storage
-
-
-#"https://www2.tjal.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado={number}&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha="
 
 
 class EsajSpider(scrapy.Spider):
@@ -30,16 +26,6 @@ class EsajSpider(scrapy.Spider):
             self.start_urls.append(self.make_url(line))
         for url in self.start_urls:
             yield self.make_requests_from_url(url)
-        # yield scrapy.Request("https://www2.tjal.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado=asdasdasdsa&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha=", self.parse)
-
-        # yield scrapy.Request("https://www2.tjal.jus.br/cpopg/search.do?conversationId=&cbPesquisa=NUMPROC&dadosConsulta.valorConsultaNuUnificado=0000001-03.2017.8.02.0084&dadosConsulta.valorConsultaNuUnificado=UNIFICADO&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&uuidCaptcha=", self.parse)
-
-    # def check_validity(self, response):
-    #     numero = response.xpath("//span[@id='numeroProcesso']/text()").get()
-    #     if numero is None:
-    #         yield "NOT_VALID"
-    #     else:
-    #         self.parse(response)
 
     def parse(self, response):
         processo = {}
@@ -68,9 +54,6 @@ class EsajSpider(scrapy.Spider):
             processo['url'] = response.request.url
             processo['tribunal'] = processo['url'].split('.')[1]
             processo['numero'] = processo['url'].split('=')[-1]
-
-        storage = Storage('juslite_elastic:9200')
-        storage.add_lawsuit(processo)
 
         yield processo
 
