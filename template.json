@@ -2,9 +2,15 @@
     {
         "tribunal": "tjal",
         "numero": "0710802-55.2018.8.02.0001",
+        "numeros_alternativos": [
+            {
+                "titulo": "Numero antigo",
+                "numero": "000000"
+            }
+        ],
         "url": "",
         "sigilo": false,
-        "situacao": "Em de grau de recurso",
+        "situacao": "Em de grau de recurso (Fase Atual: AgR-E)",
         "partes_principais": {
             "parte1": "parte1",
             "parte2": "parte2"
@@ -12,22 +18,22 @@
         "info_header": {
             "info0": {
                 "titulo": "Classe",
-                "conteudo": "Procedimento comum cível"
+                "conteudo": "Procedimento comum cível/Trabalhista - RR"
             },
-            "info1": {
-                "titulo": "Assunto",
-                "conteudo": "Dano material"
-            },
-            "info2": {
-                "titulo": "Foro",
-                "conteudo": "Foro de Maceió"
-            },
+            // "info1": {
+            //     "titulo": "Assunto",
+            //     "conteudo": "Dano material"
+            // },
+            // "info2": {
+            //     "titulo": "Foro",
+            //     "conteudo": "Foro de Maceió"
+            // },
             "info3": {
-                "titulo": "Vara",
+                "titulo": "Vara/Orgão Judicante",
                 "conteudo": "4ª Vara"
             },
             "info4": {
-                "titulo": "Juiz",
+                "titulo": "Juiz/Relator",
                 "conteudo": "João José Maria"
             }
         },

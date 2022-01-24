@@ -1,5 +1,4 @@
 import scrapy
-from storage import Storage
 
 
 def make_url(number: str) -> str:
@@ -14,7 +13,7 @@ class TstSpider(scrapy.Spider):
 
     def start_requests(self):
         self.start_urls = []
-        file = open('tst_processos.csv', 'r')
+        file = open('/home/rafa/Documents/projects/juslite/crawlers/tst_processos.csv', 'r')
         lines = file.readlines()
         for line in lines:
             self.start_urls.append(make_url(line))
@@ -24,68 +23,38 @@ class TstSpider(scrapy.Spider):
     def parse(self, response):
         processo = {}
 
-        processo['court'] = "tst"
+        processo['tribunal'] = "tst"
+        processo['url'] = response.request.url
+        numero = response.xpath("//td[@class='dadosProcesso']/b[contains(text(), 'Processo: ')]/font/text()").get()
+        classe_numero = numero.split(sep=' ')
+        processo['numero'] = '0' * (25 - len(classe_numero[-1])) + classe_numero[-1]
 
-        numero = response.xpath("//td[@class='dadosProcesso']/b[text()='Processo:  ']/font/text()").get()
-        numero = numero.split(sep=' ')[-1]
-        numero = '0' * (25 - len(numero)) + numero
-        processo['number'] = numero
+        processo['situacao'] = response.xpath("//td[@class='dadosProcesso']/b[text()=' - Fase Atual: ']/font/text()").get()
 
-        # processo['numero_alt_titulo'] =
-        # processo['numero_alt_numero'] =
-        processo['status'] = ""
-        processo['class'] = ""
-        processo['subject'] = ""
+        processo['numeros_alternativos'] = self.get_numeros_alternativos(response.xpath("//td[@class='dadosProcesso']"))
 
-        # processo['juiz_titulo'] = "Relator"
-        processo['judge'] = response.xpath("//td[@class='dadosProcesso']/b[contains(text(), 'Relator')]/font/text()").get()
+        processo['info_header'] = self.get_info_header(response.xpath("//td[@class='dadosProcesso']//b[font]//text()[1]").getall()[-2:-1], classe_numero[0])
 
-        # processo['orgao_titulo'] = "Órgão Judiciante"
-        processo['foro'] = response.xpath("//td[@class='dadosProcesso']/b[text()='Órgão Judicante: ']/font/text()").get()
-        processo['vara'] = ""
-
-        # Movimentações/histórico
-        movs = []
-        mov_tr = response.xpath("//tr[@class='historicoProcesso']")
-        for row in mov_tr:
-            mov = {}
-            mov['date'] = row.xpath("./descendant::font[1]/text()").get()
-            title = row.xpath("./descendant::font[2]/descendant-or-self::*/text()[1]").get()
-            mov['title'] = title.replace("&nbsp", "")
-            mov['content'] = ""
-            movs.append(mov)
-        processo['changes'] = movs
-
-        # Movimentação mais relevante
-        mov_relevante = {}
-        for change in processo['changes']:
-            if 'publicado' in change['title'].lower():
-                mov_relevante['titulo'] = change['title']
-                mov_relevante['data'] = change['date']
-                break
-            if 'julgado' in change['title'].lower():
-                mov_relevante['titulo'] = change['title']
-                mov_relevante['data'] = change['date']
-                break
-        if mov_relevante == {}:
-            mov_relevante['data'] = processo['changes'][0]['date']
-            mov_relevante['titulo'] = processo['changes'][0]['title']
-        processo['mov_relevante'] = mov_relevante
-
-        # Partes
-        partes = []
-        partes_td = response.xpath("//td[@class='titulo' and text()='Partes do processo']/following::td[@class='dadosProcesso']")
-        titulos = partes_td.xpath("./b/text()").getall()
-        nomes = partes_td.xpath("./text()").getall()
-        for titulo, nome in zip(titulos, nomes):
-            parte = {}
-            parte['label'] = titulo
-            parte['names'] = []
-            parte['names'].append(nome)
-            partes.append(parte)
-        processo['parties'] = partes
-
-        storage = Storage('juslite_elastic:9200')
-        storage.add_lawsuit(processo)
 
         yield processo
+
+    def get_numeros_alternativos(self, numeros_alternativos):
+        numeros_antigos = []
+        numero_alt = {}
+        numero_antigo = numeros_alternativos.xpath("./b[text()='Numeração antiga: ']/font/text()").get()
+        if numero_antigo is not None:
+            numero_alt['titulo'] = "Numeração antiga"
+            numero_alt['numero'] = numero_antigo
+            numeros_antigos.append(numero_alt)
+        numero_alt = {}
+        numero_alt['titulo'] = "Número no TRT de Origem"
+        numero_alt['numero'] = numeros_alternativos.xpath("./b[contains(text(), 'Número no TRT de Origem: ')]/font/text()").get()
+        numeros_antigos.append(numero_alt)
+        return numeros_antigos
+
+    def get_info_header(self, header, classe):
+        info_header = {}
+
+
+
+        return info_header
