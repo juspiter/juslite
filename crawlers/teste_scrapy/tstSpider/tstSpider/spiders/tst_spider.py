@@ -81,12 +81,6 @@ class TstSpider(scrapy.Spider):
     def get_partes_todas(self, partes_raw):
         partes_todas = []
 
-        # for element in partes_raw :
-        #     this_parte = {}
-        #     if element == "" :
-        #         this_parte['titulo'] = 
-
-        # i = 0
         for i, element in enumerate(partes_raw) :
         # while partes_raw[i] :
             this_parte = {}
@@ -95,24 +89,4 @@ class TstSpider(scrapy.Spider):
                 this_parte['nomes'] = [partes_raw[i-3]]
                 this_parte['outros'] = [partes_raw[i-2] + partes_raw[i-1]]
                 partes_todas.append(this_parte)
-            # partes_raw = partes_raw[i:]
-            # i += 1
-
-        # info_partes = []
-        # for parte in partes:
-        #     this_parte = {}
-        #     this_parte['titulo'] = parte.xpath("./td[1]/span/text()").get().strip()
-        #     nomes = parte.xpath("./td[2]//text()").getall()
-        #     this_parte['nomes'] = [nomes.pop(0).strip()]
-
-        #     outros = []
-        #     for i, outro in enumerate(nomes):
-        #         if outro.strip() != '':
-        #             continue
-        #         outros.append(nomes[i + 1].strip() + " " + nomes[i + 2].strip())
-
-        #     this_parte['outros'] = outros
-        #     info_partes.append(this_parte)
-        # return info_partes
-
         return partes_todas
