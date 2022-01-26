@@ -23,7 +23,7 @@ const SearchBox = () => {
         <input
           className="input-text input-group-text"
           type="text"
-          placeholder='Digite sua busca...'
+          placeholder='Busque por um processo...'
           ref={searchTermRef}
           // value={searchTerm}
           // onChange={handleSearchChange}
