@@ -13,7 +13,7 @@ class TstSpider(scrapy.Spider):
 
     def start_requests(self):
         self.start_urls = []
-        file = open('/home/rafa/Documents/projects/juslite/crawlers/tst_processos.csv', 'r')
+        file = open('/home/anderson/Dev/42_labs/juslite/crawlers/tst_processos.csv', 'r')
         lines = file.readlines()
         for line in lines:
             self.start_urls.append(make_url(line))
@@ -33,7 +33,9 @@ class TstSpider(scrapy.Spider):
 
         processo['numeros_alternativos'] = self.get_numeros_alternativos(response.xpath("//td[@class='dadosProcesso']"))
 
-        processo['info_header'] = self.get_info_header(response.xpath("//td[@class='dadosProcesso']//b[font]//text()[1]").getall()[-2:-1], classe_numero[0])
+        processo['info_header'] = self.get_info_header(response.xpath("//td[@class='dadosProcesso']//b[font]//text()[1]").getall()[-4:], classe_numero[0])
+
+        processo['partes_todas'] = self.get_partes_todas(response.xpath("//tr[td[@class='titulo']]/following-sibling::tr/td[not(table)]//text()").getall())
 
 
         yield processo
@@ -54,7 +56,63 @@ class TstSpider(scrapy.Spider):
 
     def get_info_header(self, header, classe):
         info_header = {}
-
-
-
+        info_header['info0'] = {
+            "titulo" : "Classe",
+            "conteudo" : classe
+        }
+        info_header['info1'] = {
+            "titulo" : "",
+            "conteudo" : ""
+        }
+        info_header['info2'] = {
+            "titulo" : "",
+            "conteudo" : ""
+        }
+        info_header['info3'] = {
+            "titulo" : header[0].split(':')[0],
+            "conteudo" : header[1]
+        }
+        info_header['info4'] = {
+            "titulo" : header[2].split(':')[0],
+            "conteudo" : header[3]
+        }
         return info_header
+
+    def get_partes_todas(self, partes_raw):
+        partes_todas = []
+
+        # for element in partes_raw :
+        #     this_parte = {}
+        #     if element == "" :
+        #         this_parte['titulo'] = 
+
+        # i = 0
+        for i, element in enumerate(partes_raw) :
+        # while partes_raw[i] :
+            this_parte = {}
+            if partes_raw[i] == '\xa0' and i > 0 :
+                this_parte['titulo'] = partes_raw[i-4]
+                this_parte['nomes'] = [partes_raw[i-3]]
+                this_parte['outros'] = [partes_raw[i-2] + partes_raw[i-1]]
+                partes_todas.append(this_parte)
+            # partes_raw = partes_raw[i:]
+            # i += 1
+
+        # info_partes = []
+        # for parte in partes:
+        #     this_parte = {}
+        #     this_parte['titulo'] = parte.xpath("./td[1]/span/text()").get().strip()
+        #     nomes = parte.xpath("./td[2]//text()").getall()
+        #     this_parte['nomes'] = [nomes.pop(0).strip()]
+
+        #     outros = []
+        #     for i, outro in enumerate(nomes):
+        #         if outro.strip() != '':
+        #             continue
+        #         outros.append(nomes[i + 1].strip() + " " + nomes[i + 2].strip())
+
+        #     this_parte['outros'] = outros
+        #     info_partes.append(this_parte)
+        # return info_partes
+
+        return partes_todas
