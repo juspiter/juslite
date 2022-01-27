@@ -30,7 +30,7 @@ services:
     build: ./crawlers
     container_name: juslite_crawlers
     environment:
-      - PYTHONPATH=/app:/app/teste_scrapy/tstSpider/tstSpider:/app/esaj:/app/esaj/esaj:/app/esaj/esaj/spiders
+      - PYTHONPATH=/app:/app/tstSpider:/app/tstSpider/tstSpider:/app/tstSpider/tstSpider/spiders:/app/esaj:/app/esaj/esaj:/app/esaj/esaj/spiders
     volumes:
       - ./crawlers:/app
 

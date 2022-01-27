@@ -9,4 +9,4 @@ curl -X PUT "juslite_elastic:9200/_all/_mappings?pretty" -H 'Content-Type: appli
 }
 '
 
-python3 main.py
+sh crawl.sh
