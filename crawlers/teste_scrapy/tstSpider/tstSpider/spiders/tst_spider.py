@@ -13,7 +13,7 @@ class TstSpider(scrapy.Spider):
 
     def start_requests(self):
         self.start_urls = []
-        file = open('/home/anderson/Dev/42_labs/juslite/crawlers/tst_processos.csv', 'r')
+        file = open('/home/rafa/Documents/projects/juslite/crawlers/tst_processos.csv', 'r')
         lines = file.readlines()
         for line in lines:
             self.start_urls.append(make_url(line))
@@ -25,18 +25,17 @@ class TstSpider(scrapy.Spider):
 
         processo['tribunal'] = "tst"
         processo['url'] = response.request.url
+        processo['sigilo'] = False
         numero = response.xpath("//td[@class='dadosProcesso']/b[contains(text(), 'Processo: ')]/font/text()").get()
         classe_numero = numero.split(sep=' ')
         processo['numero'] = '0' * (25 - len(classe_numero[-1])) + classe_numero[-1]
-
         processo['situacao'] = response.xpath("//td[@class='dadosProcesso']/b[text()=' - Fase Atual: ']/font/text()").get()
-
         processo['numeros_alternativos'] = self.get_numeros_alternativos(response.xpath("//td[@class='dadosProcesso']"))
-
         processo['info_header'] = self.get_info_header(response.xpath("//td[@class='dadosProcesso']//b[font]//text()[1]").getall()[-4:], classe_numero[0])
-
-        processo['partes_todas'] = self.get_partes_todas(response.xpath("//tr[td[@class='titulo']]/following-sibling::tr/td[not(table)]//text()").getall())
-
+        processo['partes_todas'] = self.get_partes_todas(response.xpath("//td[@class='titulo']/following::td[@class='dadosProcesso']//text()").getall())
+        processo['partes_principais'] = self.get_partes_principais(processo['partes_todas'])
+        processo['moves'] = self.get_moves(response.xpath("//th[text()='Histórico do processo']/following::tr[@class='historicoProcesso']"))
+        processo['ultima_mov'] = {"data": processo['moves'][0]['data'], "titulo": processo['moves'][0]['titulo']}
 
         yield processo
 
@@ -56,37 +55,63 @@ class TstSpider(scrapy.Spider):
 
     def get_info_header(self, header, classe):
         info_header = {}
-        info_header['info0'] = {
-            "titulo" : "Classe",
-            "conteudo" : classe
-        }
-        info_header['info1'] = {
-            "titulo" : "",
-            "conteudo" : ""
-        }
-        info_header['info2'] = {
-            "titulo" : "",
-            "conteudo" : ""
-        }
-        info_header['info3'] = {
-            "titulo" : header[0].split(':')[0],
-            "conteudo" : header[1]
-        }
-        info_header['info4'] = {
-            "titulo" : header[2].split(':')[0],
-            "conteudo" : header[3]
-        }
+        info_header['info0'] = {"titulo": "Classe", "conteudo": classe}
+        info_header['info1'] = {"titulo": "", "conteudo": ""}
+        info_header['info2'] = {"titulo": "", "conteudo": ""}
+        info_header['info3'] = {"titulo": header[0].split(':')[0], "conteudo": header[1]}
+        info_header['info4'] = {"titulo": header[2].split(':')[0],"conteudo": header[3]}
         return info_header
 
     def get_partes_todas(self, partes_raw):
         partes_todas = []
+        partes_format = []
 
-        for i, element in enumerate(partes_raw) :
-        # while partes_raw[i] :
-            this_parte = {}
-            if partes_raw[i] == '\xa0' and i > 0 :
-                this_parte['titulo'] = partes_raw[i-4]
-                this_parte['nomes'] = [partes_raw[i-3]]
-                this_parte['outros'] = [partes_raw[i-2] + partes_raw[i-1]]
-                partes_todas.append(this_parte)
+        for i, string in enumerate(partes_raw):
+            if ':' not in string:
+                continue
+            partes_format.append(partes_raw[i] + partes_raw[i + 1])
+
+        this_parte = {}
+        outros = []
+        for parte in partes_format:
+            if 'Advogad' not in parte and 'Procurador' not in parte.split(':')[0]:
+                if this_parte != {}:
+                    this_parte['outros'] = outros
+                    outros = []
+                    partes_todas.append(this_parte)
+                    this_parte = {}
+                split = str(parte).split(':')
+                this_parte['titulo'] = split[0]
+                this_parte['nomes'] = [split[1].strip()]
+            else:
+                outros.append(parte)
+        this_parte['outros'] = outros
+        partes_todas.append(this_parte)
         return partes_todas
+
+    def get_partes_principais(self, partes_todas):
+        partes_principais = {}
+        partes_principais['parte1'] = partes_todas[0]['nomes'][0]
+        partes_principais['parte2'] = partes_todas[1]['nomes'][0]
+        return partes_principais
+
+    def get_moves(self, moves_raw):
+        moves = []
+        for move in moves_raw:
+            this_move = {}
+            texts = move.xpath(".//text()").getall()
+            new_texts = [item for item in texts if any(char.isalnum() for char in item.strip('&nbsp'))]
+            this_move['data'] = new_texts[0]
+            if 'Movimentação' in new_texts:
+                new_texts.remove('Movimentação')
+            this_move['titulo'] = new_texts[1].strip('&nbsp')
+            if len(new_texts) > 2:
+                this_move['conteudo'] = " ".join(new_texts[2:])
+            doc = move.xpath(".//a/@href").get()
+            if doc is not None:
+                if 'http://' not in doc:
+                    this_move['doc'] = "http://aplicacao4.tst.jus.br/consultaProcessual/" + doc
+                else:
+                    this_move['doc'] = doc
+            moves.append(this_move)
+        return moves

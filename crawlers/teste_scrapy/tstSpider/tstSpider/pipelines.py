@@ -5,8 +5,14 @@
 
 
 # useful for handling different item types with a single interface
+from storage import Storage
 from itemadapter import ItemAdapter
 
-class TstspiderPipeline:
+
+class StoragePipeline:
+    def open_spider(self, spider):
+        self.storage = Storage('juslite_elastic:9200')
+
     def process_item(self, item, spider):
+        self.storage.add_lawsuit(item)
         return item
