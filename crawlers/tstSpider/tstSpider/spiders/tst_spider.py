@@ -13,7 +13,7 @@ class TstSpider(scrapy.Spider):
 
     def start_requests(self):
         self.start_urls = []
-        file = open('/home/rafa/Documents/projects/juslite/crawlers/tst_processos.csv', 'r')
+        file = open('tst_processos.csv', 'r')
         lines = file.readlines()
         for line in lines:
             self.start_urls.append(make_url(line))

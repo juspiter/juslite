@@ -11,4 +11,4 @@ COPY . .
 
 RUN chmod +x wait-for-it.sh
 
-CMD [ "./wait-for-it.sh", "juslite_elastic:9200", "--timeout=0", "--", "bash", "es_config.sh"]
+CMD [ "./wait-for-it.sh", "juslite_elastic:9200", "--timeout=0", "--", "bash", "start_all.sh"]
