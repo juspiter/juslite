@@ -1,5 +1,6 @@
 import SearchBox from "../components/SearchBox";
 import About from "../components/About.js";
+import AboutContent from "../components/AboutContent.js";
 // import "../partials/Welcome.scss";
 
 const Welcome = () => {
@@ -10,7 +11,7 @@ const Welcome = () => {
         <h1>Juslite</h1>
         <div><SearchBox /></div>
       </div>
-      <About />
+      <AboutContent />
     </div>
   );
 }
