@@ -16,7 +16,7 @@ const LawsuitPreview = (props) => {
           <h5 style={{"text-align": "left"}}><strong>{props.lawsuit.partes_principais.parte2}</strong></h5>
         </div>
       </div>
-      <h5 className='mt-2' style={{"text-align": "center"}}>{props.lawsuit.tribunal.toUpperCase()} {props.lawsuit.numero} - <small>{props.lawsuit.situacao}<small/></small></h5>
+      <h5 className='mt-2' style={{"text-align": "center"}}>{props.lawsuit.tribunal.toUpperCase()} {props.lawsuit.numero} - <small>{props.lawsuit.situacao}</small></h5>
       <hr/>
       <ul className="row align-items-start mt-3">
         <div className="col-4">
