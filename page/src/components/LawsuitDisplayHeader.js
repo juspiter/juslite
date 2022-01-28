@@ -15,9 +15,9 @@ const LawsuitDisplayHeader = (props) => {
           <h5 className="info col"></h5>
         </div>
         <div className="row mt-2">
-          <h5 className="info col">{props.proc['info_header']['info2']['titulo']}<span className="row m-0">{props.proc['info_header']['info2']['conteudo']}</span></h5>
-          <h5 className="info col">{props.proc['info_header']['info3']['titulo']}<span className="row m-0">{props.proc['info_header']['info3']['conteudo']}</span></h5>
           <h5 className="info col">{props.proc['info_header']['info4']['titulo']}<span className="row m-0">{props.proc['info_header']['info4']['conteudo']}</span></h5>
+          <h5 className="info col">{props.proc['info_header']['info3']['titulo']}<span className="row m-0">{props.proc['info_header']['info3']['conteudo']}</span></h5>
+          <h5 className="info col">{props.proc['info_header']['info2']['titulo']}<span className="row m-0">{props.proc['info_header']['info2']['conteudo']}</span></h5>
         </div>
       </section>
     </>
