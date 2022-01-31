@@ -1,5 +1,6 @@
 import React from 'react';
-//import {GrDocument} from 'react-icons/cg'
+import ShowDoc from './ShowDoc';
+
 
 const LawsuitDisplayChanges = (props) => {
   return (
@@ -16,7 +17,16 @@ const LawsuitDisplayChanges = (props) => {
         <div>
           <li className="row align-items-start" key={change}>
             <div className="col-2"><b>{change['data']}</b></div>
-            <div className="col-10">{change['titulo']}<br />{change['conteudo']}</div>
+            <div className="col-10"> 
+              
+              {/* {requestResponse.length === 0 && !isWelcome && !isSearching && <NotProcess />} */}
+                
+                  < ShowDoc doc={change['doc']} url={props.proc['url']}/>
+                
+                {/* (change['doc'] != null) && <a href={change['doc']}>LINK </a> */}
+              
+              {change['titulo']}<br />{change['conteudo']}
+            </div>
           </li>
           <hr />
         </div>
