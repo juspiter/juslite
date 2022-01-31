@@ -1,3 +1,4 @@
+from operator import contains
 import scrapy
 
 
@@ -42,7 +43,7 @@ class EsajSpider(scrapy.Spider):
 
             processo['situacao'] = response.xpath("//span[@id='labelSituacaoProcesso']/text()").get()
 
-            processo['moves'] = self.get_info_moves(response.xpath("//tbody[@id='tabelaTodasMovimentacoes']"))
+            processo['moves'] = self.get_info_moves(response.xpath("//tbody[@id='tabelaTodasMovimentacoes']"), response)
             processo['ultima_mov'] = {"data": processo['moves'][0]['data'], "titulo": processo['moves'][0]['titulo']}
             processo['info_header'] = self.get_info_header(response.xpath("//div[@id='containerDadosPrincipaisProcesso']"))
             processo['partes_todas'] = self.get_info_partes_todas(response.xpath("//table[@id='tableTodasPartes']/tr"))
@@ -57,7 +58,7 @@ class EsajSpider(scrapy.Spider):
 
         yield processo
 
-    def get_info_moves(self, moves):
+    def get_info_moves(self, moves, response):
         info_moves = []
 
         for move in moves.xpath("./tr"):
@@ -68,18 +69,24 @@ class EsajSpider(scrapy.Spider):
             this_move['doc'] = move.xpath("./td/a[@class='linkMovVincProc']/@href").get()
             if this_move['doc'] == "#liberarAutoPorSenha":
                 this_move['doc'] = "doc_sigilo"
+            elif this_move['doc'] is not None and 'http' not in this_move['doc']:
+                this_move['doc'] = "https://" + response.request.url.split('/')[2] + this_move['doc']
             info_moves.append(this_move)
         return info_moves
 
     def get_info_header(self, header):
         info_header = {}
 
-        for i, head in enumerate(header.xpath("./div[2]/div")):
+        raw_header = header.xpath("./div[2]/div")
+        for i in range(5):
             this_header = {}
-            this_header['titulo'] = head.xpath("./span/text()").get().strip('\n\t ')
-            this_header['conteudo'] = head.xpath("./div/span/text()").get().strip('\n\t ')
-            # info_header.append(this_header)
-            info_header['info' + str(i)] = this_header
+            if len(raw_header) > i:
+                head = raw_header[i]
+                this_header['titulo'] = head.xpath("./span/text()").get().strip('\n\t ')
+                this_header['conteudo'] = head.xpath("./div/span/text()").get().strip('\n\t ')
+                info_header['info' + str(i)] = this_header
+            else:
+                info_header['info' + str(i)] = {"titulo": "", "conteudo": ""}
         return info_header
 
     def get_info_partes_todas(self, partes):
