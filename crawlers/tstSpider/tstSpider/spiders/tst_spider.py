@@ -1,4 +1,5 @@
 import scrapy
+import datetime
 
 
 def make_url(number: str) -> str:
@@ -22,7 +23,7 @@ class TstSpider(scrapy.Spider):
 
     def parse(self, response):
         processo = {}
-
+        processo['data_atualizacao'] = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
         processo['tribunal'] = "tst"
         processo['url'] = response.request.url
         processo['sigilo'] = False

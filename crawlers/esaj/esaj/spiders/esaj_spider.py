@@ -1,5 +1,5 @@
-from operator import contains
 import scrapy
+import datetime
 
 
 class EsajSpider(scrapy.Spider):
@@ -30,6 +30,7 @@ class EsajSpider(scrapy.Spider):
 
     def parse(self, response):
         processo = {}
+        processo['data_atualizacao'] = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
         sob_sigilo = False if response.xpath("//span[@id='numeroProcesso']/text()").get() else True
         if sob_sigilo == False:
             processo['sigilo'] = False
