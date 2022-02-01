@@ -66,6 +66,8 @@ class EsajSpider(scrapy.Spider):
             this_move = {}
             this_move['data'] = move.xpath("./td[@class='dataMovimentacao']/text()").get().strip('\n\t ')
             this_move['titulo'] = move.xpath("./td[@class='descricaoMovimentacao']/text()").get().strip('\n\t ')
+            if this_move['titulo'] == "":
+                this_move['titulo'] = move.xpath("./td[@class='descricaoMovimentacao']/a/text()").get().strip('\n\t ')
             this_move['conteudo'] = move.xpath("./td[@class='descricaoMovimentacao']/span/text()").get().strip('\n\t ')
             this_move['doc'] = move.xpath("./td/a[@class='linkMovVincProc']/@href").get()
             if this_move['doc'] == "#liberarAutoPorSenha":
