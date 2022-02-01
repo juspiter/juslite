@@ -26,8 +26,8 @@ const LawsuitPreview = (props) => {
           <div className="col-4">
             <div className='preview_titulo'>Última movimentação</div>
             <div className='preview_cont'> {props.lawsuit.ultima_mov.data} - {props.lawsuit.ultima_mov.titulo}</div>
-            {/* <div className='preview_titulo mt-3'>{props.lawsuit.info_header.info4.titulo}</div>
-            <div className='preview_cont'> {props.lawsuit.info_header.info4.conteudo}</div> */}
+            <div className='preview_titulo mt-3'>{props.lawsuit.info_header.info4.titulo}</div>
+            <div className='preview_cont'> {props.lawsuit.info_header.info4.conteudo}</div>
           </div>
           <div className="col-4">
             <div className='preview_titulo'>{props.lawsuit.info_header.info1.titulo}</div>
@@ -41,6 +41,7 @@ const LawsuitPreview = (props) => {
             <div className='preview_cont'> {props.lawsuit.info_header.info3.conteudo}</div>
           </div>
         </ul>
+        <p className='atualizado_preview'>Atualizado em: {props.lawsuit.data_atualizacao}</p>
       </div>
     );
   }

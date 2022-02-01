@@ -19,6 +19,7 @@ const LawsuitDisplayHeader = (props) => {
           <h5 className="info col">{props.proc['info_header']['info3']['titulo']}<span className="row m-0">{props.proc['info_header']['info3']['conteudo']}</span></h5>
           <h5 className="info col">{props.proc['info_header']['info2']['titulo']}<span className="row m-0">{props.proc['info_header']['info2']['conteudo']}</span></h5>
         </div>
+        <p className='atualizado_display'>Atualizado em: {props.proc.data_atualizacao}</p>
       </section>
     </>
   );

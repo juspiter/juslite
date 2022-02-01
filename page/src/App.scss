@@ -97,6 +97,13 @@ a:hover {
   background-color: rgb(197, 150, 133);
 }
 
+p.atualizado_display {
+	color: rgb(155, 155, 155);
+	margin-bottom: 0px;
+  font-size: 13px;
+}
+
+
 @import "partials/LawsuitPreview.scss";
 @import "partials/SortOptions.scss";
 @import "partials/Welcome.scss";

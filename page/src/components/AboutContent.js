@@ -28,17 +28,17 @@ const AboutContent = () => {
                 <div class="col">
                   <h6 class="text-center">Desenvolvedores:</h6>
                   <ul>
-                    <li><a href="https://github.com/aalcara">Anderson</a></li>
-                    <li><a href="https://github.com/LuccasRMedeiros">Luccas</a></li>
-                    <li><a href="https://github.com/natflausino">Natasha</a></li>
-                    <li><a href="https://github.com/rkrocha">Rafael</a></li>
+                    <li><a target="_blank" rel="noreferrer" href="https://github.com/aalcara">Anderson</a></li>
+                    <li><a target="_blank" rel="noreferrer" href="https://github.com/LuccasRMedeiros">Luccas</a></li>
+                    <li><a target="_blank" rel="noreferrer" href="https://github.com/natflausino">Natasha</a></li>
+                    <li><a target="_blank" href="https://github.com/rkrocha">Rafael</a></li>
                   </ul>
                 </div>
                 <div class="col">
                   <h6 class="text-center m-2">Agradecimentos:</h6>
                   <ul>
-                    <li><a href="https://github.com/vdemario">Vitor</a></li>
-                    <li><a href="https://twitter.com/lulacode?s=20">Lula</a></li>
+                    <li><a target="_blank" rel="noreferrer"href="https://github.com/vdemario">Vitor</a></li>
+                    <li><a target="_blank" rel="noreferrer"href="https://twitter.com/lulacode?s=20">Lula</a></li>
                   </ul>
                 </div>
               </div>

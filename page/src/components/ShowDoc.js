@@ -8,14 +8,14 @@ const ShowDoc = (props) => {
   }
   if (props.doc == "doc_sigilo") {
     return (
-      <a className="see-doc" href={props.url}>
+      <a title="Documento Sigiloso" target="_blank" rel="noreferrer" className="see-doc" href={props.url}>
         <IoDocumentLock/>
       </a>
     );
   }
   else {
     return (
-      <a className="see-doc" href={props.doc}>
+      <a target="_blank" rel="noreferrer" className="see-doc" href={props.doc}>
         <IoDocument/>
       </a>
      );
