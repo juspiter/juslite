@@ -6,7 +6,7 @@ const ShowDoc = (props) => {
   if (props.doc == null) {
     return (null)
   }
-  if (props.doc == "doc_sigilo") {
+  if (props.doc === "doc_sigilo") {
     return (
       <a title="Documento Sigiloso" target="_blank" rel="noreferrer" className="see-doc" href={props.url}>
         <IoDocumentLock/>

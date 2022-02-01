@@ -1,5 +1,4 @@
 import SearchBox from "../components/SearchBox";
-import About from "../components/About.js";
 import AboutContent from "../components/AboutContent.js";
 // import "../partials/Welcome.scss";
 
