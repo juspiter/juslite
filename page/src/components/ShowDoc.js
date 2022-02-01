@@ -1,5 +1,6 @@
 import React from 'react';
-//import {GrDocument} from 'react-icons/cg'
+import {IoDocument, IoDocumentLock} from 'react-icons/io5'
+import "../partials/ShowDoc.scss"
 
 const ShowDoc = (props) => {
   if (props.doc == null) {
@@ -7,14 +8,18 @@ const ShowDoc = (props) => {
   }
   if (props.doc == "doc_sigilo") {
     return (
-      <a href={props.url}>Sigilo</a>
+      <a className="see-doc" href={props.url}>
+        <IoDocumentLock/>
+      </a>
     );
   }
   else {
-    return ( 
-      <a href={props.doc}>LINK </a>
+    return (
+      <a className="see-doc" href={props.doc}>
+        <IoDocument/>
+      </a>
      );
   }
 }
- 
+
 export default ShowDoc;
