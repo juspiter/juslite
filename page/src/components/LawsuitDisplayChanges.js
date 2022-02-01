@@ -18,14 +18,8 @@ const LawsuitDisplayChanges = (props) => {
           <li className="row align-items-start" key={change}>
             <div className="col-2"><b>{change['data']}</b></div>
             <div className="col-10"> 
-              
-              {/* {requestResponse.length === 0 && !isWelcome && !isSearching && <NotProcess />} */}
-                
-                  < ShowDoc doc={change['doc']} url={props.proc['url']}/>
-                
-                {/* (change['doc'] != null) && <a href={change['doc']}>LINK </a> */}
-              
-              {change['titulo']}<br />{change['conteudo']}
+                < ShowDoc doc={change['doc']} url={props.proc['url']}/> 
+                {change['titulo']}<br />{change['conteudo']}
             </div>
           </li>
           <hr />
