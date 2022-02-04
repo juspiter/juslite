@@ -19,7 +19,7 @@ const LawsuitDisplayChanges = (props) => {
             <div className="col-2"><b>{change['data']}</b></div>
             <div className="col-10">
               <ShowDoc doc={change['doc']} url={props.proc['url']} />
-              {change['titulo']}<br />{change['conteudo']}
+              <strong>{change['titulo']}</strong><br />{change['conteudo']}
             </div>
           </li>
           <hr />

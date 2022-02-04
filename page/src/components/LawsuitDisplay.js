@@ -3,6 +3,7 @@ import LawsuitDisplayHeader from './LawsuitDisplayHeader';
 import LawsuitDisplayParties from './LawsuitDisplayParties';
 import LawsuitDisplayChanges from './LawsuitDisplayChanges';
 import LawsuitSecret from './LawsuitSecret';
+import ButtonTop from './ButtonTop';
 
 
 const LawsuitDisplay = (props) => {
@@ -15,11 +16,11 @@ const LawsuitDisplay = (props) => {
     return (
       <>
         <LawsuitDisplayHeader proc={props.proc} />
-        <hr></hr>
         <br></br>
         <LawsuitDisplayParties proc={props.proc} />
         <br></br>
         <LawsuitDisplayChanges proc={props.proc} />
+        <ButtonTop/>
       </>
     );
   }

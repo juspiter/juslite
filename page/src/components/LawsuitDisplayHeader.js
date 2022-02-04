@@ -2,26 +2,53 @@ import React from 'react';
 
 const LawsuitDisplayHeader = (props) => {
   return (
-    <>
+    <div className='display_header'>
       <section className="d-inline-flex p-3 bd-highlight align-items-center gap-3">
-        <h3>Nº do processo:<b> {props.proc['numero']} ({props.proc['tribunal'].toUpperCase()})</b></h3>
-        <h5 className="m-1 info p-1 border border-2 rounded-pill">{props.proc['situacao']}</h5>
+        <div>
+          <div style={{"color" : "gray", "font-size" : "16px"}}>Nº do processo</div>
+            <div>
+              <div className="header_number_process">
+                <strong> {props.proc['numero']} ({props.proc['tribunal'].toUpperCase()})</strong>
+                {props.proc['situacao'] && <span className="border-2">{props.proc['situacao']}</span>}
+              </div>
+              <div>
+                {props.proc['numeros_alternativos'] &&
+              <div>{props.proc['numeros_alternativos'].map(alter => (
+                <div>{alter['titulo']}: {alter['numero']}</div>))}
+              </div>}
+            </div>
+          </div>
+        </div>
       </section>
       <br />
       <section className="container">
-        <div className="row">
-          <h5 className="info col">{props.proc['info_header']['info0']['titulo']}<span className="row m-0">{props.proc['info_header']['info0']['conteudo']}</span></h5>
-          <h5 className="info col">{props.proc['info_header']['info1']['titulo']}<span className="row m-0">{props.proc['info_header']['info1']['conteudo']}</span></h5>
-          <h5 className="info col"></h5>
+        <div className="row mb-3">
+          <div className='col-4'>
+            <h5 className="header_titulo ">{props.proc['info_header']['info0']['titulo']}</h5>
+            <span>{props.proc['info_header']['info0']['conteudo']}</span>
+          </div>
+          <div className='col-4'>
+            <h5 className="header_titulo">{props.proc['info_header']['info1']['titulo']}</h5>
+            <span>{props.proc['info_header']['info1']['conteudo']}</span>
+          </div>
+          <div className='col-4'>
+            <h5 className="header_titulo">{props.proc['info_header']['info4']['titulo']}</h5>
+            <span>{props.proc['info_header']['info4']['conteudo']}</span>
+          </div>
         </div>
-        <div className="row mt-2">
-          <h5 className="info col">{props.proc['info_header']['info4']['titulo']}<span className="row m-0">{props.proc['info_header']['info4']['conteudo']}</span></h5>
-          <h5 className="info col">{props.proc['info_header']['info3']['titulo']}<span className="row m-0">{props.proc['info_header']['info3']['conteudo']}</span></h5>
-          <h5 className="info col">{props.proc['info_header']['info2']['titulo']}<span className="row m-0">{props.proc['info_header']['info2']['conteudo']}</span></h5>
+        <div className='row'>
+          <div className='col-4'>
+            <h5 className="header_titulo">{props.proc['info_header']['info2']['titulo']}</h5>
+            <span>{props.proc['info_header']['info2']['conteudo']}</span>
+          </div>
+          <div className='col-4'>
+            <h5 className="header_titulo">{props.proc['info_header']['info3']['titulo']}</h5>
+            <span className="">{props.proc['info_header']['info3']['conteudo']}</span>
+          </div>
         </div>
         <p className='atualizado_display'>Atualizado em: {props.proc.data_atualizacao}</p>
       </section>
-    </>
+    </div>
   );
 }
 

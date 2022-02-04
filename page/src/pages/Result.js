@@ -4,6 +4,7 @@ import LawsuitList from "../components/LawsuitList.js";
 import LawsuitNotFound from "../components/LawsuitNotFound";
 import SortOptions from '../components/SortOptions.js';
 import Header from '../components/Header.js';
+import ButtonTop from '../components/ButtonTop';
 
 
 const Result = () => {
@@ -40,6 +41,7 @@ const Result = () => {
         <Header />
         <SortOptions selected={sortOption} onChangeSort={sortOptionHandler} />
         <LawsuitList list={requestResponse.response} />
+        <ButtonTop/>
       </div>
     )
   }
