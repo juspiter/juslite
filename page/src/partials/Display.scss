@@ -35,3 +35,30 @@ div.display_header {
 		font-style: normal;
 	}
 }
+
+div.moves_filter {
+	* {
+		border: none;
+		background-color: #444;
+		color: whitesmoke;
+		border-radius: 0;
+	}
+	div {
+		border-radius: 5px;
+		label {
+			border-radius: 5px 0px 0px 5px;
+			border-right: 2px solid #282c34;
+		}
+	}
+	select {
+		border-radius: 0px 5px 5px 0px;
+		border-left: 1px solid #282c34;
+		cursor: pointer;
+	}
+
+	select:hover {
+		background-color: #7f7f7f;;
+
+	}
+
+}
