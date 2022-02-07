@@ -13,7 +13,7 @@
 
 O Juslite é um site gratuito e de código aberto para consulta processual, que agrega informações públicas de tribunais brasileiros. É um projeto fruto de colaboração entre a [42 São Paulo](https://www.42sp.org.br/) e o [Jusbrasil](https://www.jusbrasil.com.br/home).
 
-Cada tribunal pode oferecer diferentes sistemas e maneiras de se pesquisar e acessar informações públicas sobre processos jurídicos. O objetivo do Juslite é agregar estas informações em um único site que seja fácil de utilizar e que tenha um layout constante independente da origem de um processo.
+Cada tribunal pode oferecer diferentes sistemas e maneiras de se pesquisar e acessar informações sobre processos jurídicos. O objetivo do Juslite é agregar estas informações em um único site que seja fácil de utilizar e que tenha um layout constante independente da origem de um processo.
 
 No momento são suportados os seguintes tribunais:
 - TJAL (Tribunal de Justiça do Alagoas, 1º grau)
@@ -26,7 +26,7 @@ No momento são suportados os seguintes tribunais:
 * [Python](https://www.python.org/)
 * [Scrapy](https://scrapy.org/), framework de [web crawling](https://pt.wikipedia.org/wiki/Rastreador_web)
 * [Elasticsearch](https://www.elastic.co/pt/), motor de busca
-* [Flask](https://flask.palletsprojects.com/en/2.0.x/) API
+* [Flask](https://flask.palletsprojects.com/en/2.0.x/), API
 * [Docker](https://www.docker.com/)
 * [nginx](https://nginx.org/en/)
 
