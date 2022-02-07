@@ -44,7 +44,10 @@ Acessa os sites de tribunais, baixando os HTMLs de páginas de processos jurídi
 Composto pelo banco de dados e motor de busca do Elasticsearch, onde são guardados os dados coletados pelos crawlers; e pela API que recebe requisições feitas pelo site e retorna respostas buscadas pelo módulo do Elasticsearch e nele contidas.
 
 ### [Site](https://github.com/juspiter/juslite/tree/main/page)
-Cada página, script e componente do React que compõe o site.
+Cada página, script e componente do React que compõe o site, assim como seus estilos CSS.
+
+### [Proxy reverso](https://github.com/juspiter/juslite/tree/main/proxy)
+Um componente simples para rotear acessos à página e API.
 
 ## Autoria
 
