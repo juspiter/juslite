@@ -35,45 +35,14 @@ No momento são suportados os seguintes tribunais:
 * [Bootstrap](https://getbootstrap.com/), toolkit de CSS
 * [Sass](https://sass-lang.com/), extensão de CSS
 
-## Usage
+## Autoria
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+O Juslite foi desenvolvido por:
+* [Anderson](https://github.com/aalcara)
+* [Luccas](https://github.com/LuccasRMedeiros)
+* [Natasha](https://github.com/natflausino)
+* [Rafael](https://github.com/rkrocha)
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
-
-
-
------------------------------------
-
-# "A" JUSLITE
-
-A Juslite é um <a href="https://juslite.42sp.org.br">site gratuito</a> <a href="https://github.com/juspiter/juslite"> código aberto</a> para consulta processual, que agrega informações públicas de tribunais brasileiros. É um projeto fruto de colaboração entre a <a href="https://www.42sp.org.br/">42 São Paulo</a> e a <a href="https://www.jusbrasil.com.br/">Jusbrasil</a>
-
-Qual o problema que ele resolve?
-  Facilita o acesso e busca de informações dos processos de tribunais brasileiros.
-  
-A solução implementada: 
-  - Crawling dos tribunais e amazenar as informação no banco de dados, permitindo buscas mais eficientes.
-  - Layout simples e um site facil de utilizar.
-
-Tecnologias utilizadas:
-  - Python;
-  - ElasticSearch;
-  - ReactJS;
-  - Docker;
-  - Nginx;
-  - Flask;
-  - Scrapy;
-
-Desafios enfrentados:
-  - Aprender as novas ferramentas, nunca utilizadas pelos integrantes do grupo;
-  - Acessar os tribunais e crawlear as informações;
-  - Diferentes layouts e HTMLs dos tribunais;
-  - Entender as necessidades dos usuarios da Juslite;
-  - Formular o design ideal para as páginas;
-
-Perspectivas para o futuro do produto:
-  - Mais informações e tribunais no banco de dados;
-  - Coleção de referencias;
+Com o apoio de:
+* [Vitor](https://github.com/vdemario)
+* [Lula](https://twitter.com/lulacode?s=20)
