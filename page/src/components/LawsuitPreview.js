@@ -68,18 +68,18 @@ const LawsuitPreview = props => {
           <div className='row'>
             <div className="col-4">
               <div className="preview_titulo mt-3">
-              {props.lawsuit.info_header.info2.titulo}
-              </div>
-              <div> {props.lawsuit.info_header.info2.conteudo}</div>
-             </div>
-            <div className="col-4">
-              <div className="preview_titulo mt-3">
               {props.lawsuit.info_header.info3.titulo}
               </div>
               <div className="preview_cont">
               {' '}
               {props.lawsuit.info_header.info3.conteudo}
               </div>
+            </div>
+            <div className="col-4">
+              <div className="preview_titulo mt-3">
+              {props.lawsuit.info_header.info2.titulo}
+              </div>
+              <div> {props.lawsuit.info_header.info2.conteudo}</div>
             </div>
             <div className="col-4">
               <div className="preview_titulo mt-3">Última movimentação</div>
