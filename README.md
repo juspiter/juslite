@@ -35,6 +35,17 @@ No momento são suportados os seguintes tribunais:
 * [Bootstrap](https://getbootstrap.com/), toolkit de CSS
 * [Sass](https://sass-lang.com/), extensão de CSS
 
+## Componentes
+
+### [Crawlers](https://github.com/juspiter/juslite/tree/main/crawlers)
+Acessa os sites de tribunais, baixando os HTMLs de páginas de processos jurídicos, coletando sua informação relevante e encaminhando-a para o Elasticsearch. Este componente é composto por dois diferentes projetos do Scrapy: um deles capaz de coletar informações do sistema [e-SAJ](https://www.softplan.com.br/solucoes/saj-tribunais/) (Sistema de Automação da Justiça) usado pelos tribunais TJAL e TJCE; enquanto o segundo foi feito para coletar informações do [sistema próprio do TST](http://aplicacao4.tst.jus.br/consultaProcessual/consultaTstNumUnica.do).
+
+### [API e motor de busca](https://github.com/juspiter/juslite/tree/main/api)
+Composto pelo banco de dados e motor de busca do Elasticsearch, onde são guardados os dados coletados pelos crawlers; e pela API que recebe requisições feitas pelo site e retorna respostas buscadas pelo módulo do Elasticsearch e nele contidas.
+
+### [Site](https://github.com/juspiter/juslite/tree/main/page)
+Cada página, script e componente do React que compõe o site.
+
 ## Autoria
 
 O Juslite foi desenvolvido por:
