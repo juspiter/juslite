@@ -17,7 +17,7 @@ const AboutContent = () => {
           <div class="_contents">
             <h5 class="text-center">Instruções</h5>
             <p>Digite a sua pesquisa na caixa de busca, sendo que qualquer termo digitado será buscado entre nomes de tribunais, números de processos, partes envolvidas, magistrados, assunto, classe, foro e vara.</p>
-            <p>Tribunais suportados: TJAL, TJCE, TST.</p>
+            <p>Tribunais suportados: TJAL e TJCE (1º grau), TST.</p>
           </div>
         </div>
         <div class="carousel-item">
