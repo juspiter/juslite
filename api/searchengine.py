@@ -20,7 +20,7 @@ class SearchEngine:
         court_filter = []
         if court_method != "todos":
             court_filter.append(court_method)
-
+            
         if court_filter:
             return self.get_term_by_court(string, court_filter, sort_method)
         return self.get_by_term(string, sort_method)
@@ -36,7 +36,7 @@ class SearchEngine:
             s = s.sort('-ultima_mov.data')
         res = s.execute()
         if res.hits == []:
-            return{"response": [], "status_code": 5, "status": "Nenhum resultado encontrado"}
+            return{"termo": term, "sort": sort, "court": court, "response": [], "status_code": 5, "status": "Nenhum resultado encontrado"}
         return {"response": [hit.to_dict() for hit in res.hits], "status_code": 0, "status": "OK"}
 
     def get_by_term(self, term: str, sort: str) -> dict:

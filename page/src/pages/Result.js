@@ -21,8 +21,8 @@ const Result = () => {
   async function fetchLawsuitsHandler() {
     setIsSearching(true);
 
-    // const res = await fetch("https://juslite.42sp.org.br/api/lawsuit/" + term + "?sort=" + sortOption + "?court=" + court);
-    const res = await fetch("https://juslite_api:3001/lawsuit/" + term + "?sort=" + sortOption + "?court=" + court);
+    // const res = await fetch("https://juslite.42sp.org.br/api/lawsuit/" + term + "?sort=" + sortOption + "&court=" + court);
+    const res = await fetch("http://localhost:80/api/lawsuit/" + term + "?sort=" + sortOption + "&court=" + court);
 
     if (res.ok) {
       const data = await res.json();
@@ -34,7 +34,7 @@ const Result = () => {
 
   useEffect(() => {
     fetchLawsuitsHandler();
-  }, [term, sortOption]);
+  }, [term, court, sortOption]);
 
   if (!isSearching && requestResponse.response.length > 1) {
     return (

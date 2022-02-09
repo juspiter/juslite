@@ -15,8 +15,6 @@ se = SearchEngine('juslite_elastic:9200')
 def query_lawsuit(endpoint):
     return se.get_results(endpoint, request.args['sort'], request.args['court'])
 
-        # const res = await fetch("https://juslite.42sp.org.br/api/lawsuit/" + term + "?sort=" + sortOption + "?court=" + court);
-
 
 if __name__ == '__main__':
     app.run(host="juslite_api", port=3001)
