@@ -1,6 +1,7 @@
-import { React } from 'react';
-import SearchBox from './SearchBox.js';
-import { Link } from 'react-router-dom';
+import { React } from 'react'
+import SearchBox from './SearchBox.js'
+import { Link } from 'react-router-dom'
+
 
 const Header = () => {
   return (
@@ -8,7 +9,13 @@ const Header = () => {
       <div className="container">
         <div className="row">
           <div className="col-1">
-            <Link to="/"><img className="" src="/image/logo.svg" alt="Imagem vetorial do planeta jupiter com uma lupa na parte inferior" /></Link>
+            <Link to="/">
+              <img
+                className=""
+                src="/image/logo.svg"
+                alt="Imagem vetorial do planeta jupiter com uma lupa na parte inferior"
+              />
+            </Link>
           </div>
           <div className="col-11" id="searchbox">
             <SearchBox />
@@ -17,7 +24,7 @@ const Header = () => {
       </div>
       <hr />
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

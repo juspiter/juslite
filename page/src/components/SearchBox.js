@@ -1,9 +1,16 @@
-import { React, useRef } from 'react';
+import { React, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import FilterTribunal from './FilterTribunal';
 
 // const [searchTerm, setSearchTerm] = useState("");
 
 const SearchBox = () => {
+
+  const [courtFilterOption, setCourtFilterOption] = useState('todos')
+
+  const filterOptionHandler = selectedCourtFilter => {
+    setCourtFilterOption(selectedCourtFilter)
+  }
 
   const navigate = useNavigate();
 
@@ -14,7 +21,7 @@ const SearchBox = () => {
     const searchTermInput = searchTermRef.current.value;
     // console.log(searchTermInput);
     if (searchTermInput.length > 2) {
-      navigate("/busca/" + searchTermInput);
+      navigate("/busca/" + searchTermInput + "/" + courtFilterOption);
     }
   }
   return (
@@ -30,6 +37,12 @@ const SearchBox = () => {
         />
         <button className="input-group-text input-button" type='submit'>Buscar</button>
       </form>
+      <div>
+      <FilterTribunal
+              selected={courtFilterOption}
+              onChangeFilter={filterOptionHandler}
+            />
+      </div>
     </>
   );
 }

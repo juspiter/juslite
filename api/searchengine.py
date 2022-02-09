@@ -4,7 +4,7 @@ from suitparser import SuitParser
 import re
 
 
-COURT_LIST = ['tjal', 'tjce', 'tst']
+#COURT_LIST = ['tjal', 'tjce', 'tst']
 
 class SearchEngine:
     def __init__(self, addr) -> None:
@@ -12,19 +12,14 @@ class SearchEngine:
         if not self.es.ping():
             raise ValueError("ElasticSearch connection failed")
 
-    def get_results(self, string: str, sort_method: str) -> dict:
+    def get_results(self, string: str, sort_method: str, court_method: str) -> dict:
         lawsuit = SuitParser(string)
         if re.match('^[0-9.-]+$', string):
             return self.get_by_number(lawsuit)
 
         court_filter = []
-        term_list = string.split()
-        for term in term_list:
-            if term in COURT_LIST:
-                court_filter.append(term)
-        for court in court_filter:
-            term_list.remove(court)
-        string = ' '.join(term_list)
+        if court_method != "todos":
+            court_filter.append(court_method)
 
         if court_filter:
             return self.get_term_by_court(string, court_filter, sort_method)
