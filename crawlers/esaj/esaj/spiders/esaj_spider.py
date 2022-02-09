@@ -82,14 +82,23 @@ class EsajSpider(scrapy.Spider):
 
         raw_header = header.xpath("./div[2]/div")
         for i in range(5):
+            info_header['info' + str(i)] = {"titulo": "", "conteudo": ""}
+        for head in raw_header:
             this_header = {}
-            if len(raw_header) > i:
-                head = raw_header[i]
-                this_header['titulo'] = head.xpath("./span/text()").get().strip('\n\t ')
-                this_header['conteudo'] = head.xpath("./div/span/text()").get().strip('\n\t ')
-                info_header['info' + str(i)] = this_header
-            else:
-                info_header['info' + str(i)] = {"titulo": "", "conteudo": ""}
+            if 'Classe' in head.xpath("./span/text()").get().strip('\n\t '):
+                index = 0
+            elif 'Assunto' in head.xpath("./span/text()").get().strip('\n\t '):
+                index = 1
+            elif 'Foro' in head.xpath("./span/text()").get().strip('\n\t '):
+                index = 2
+            elif 'Vara' in head.xpath("./span/text()").get().strip('\n\t '):
+                index = 3
+            elif 'Juiz' in head.xpath("./span/text()").get().strip('\n\t '):
+                index = 4
+            this_header['titulo'] = head.xpath("./span/text()").get().strip('\n\t ')
+            this_header['conteudo'] = head.xpath("./div/span/text()").get().strip('\n\t ')
+            info_header['info' + str(index)] = this_header
+
         return info_header
 
     def get_info_partes_todas(self, partes):

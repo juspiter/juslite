@@ -58,8 +58,8 @@ class TstSpider(scrapy.Spider):
         info_header = {}
         info_header['info0'] = {"titulo": "Classe", "conteudo": classe}
         info_header['info1'] = {"titulo": "", "conteudo": ""}
-        info_header['info2'] = {"titulo": "", "conteudo": ""}
-        info_header['info3'] = {"titulo": header[0].split(':')[0], "conteudo": header[1]}
+        info_header['info2'] = {"titulo": header[0].split(':')[0], "conteudo": header[1]}
+        info_header['info3'] = {"titulo": "", "conteudo": ""}
         info_header['info4'] = {"titulo": header[2].split(':')[0],"conteudo": header[3]}
         return info_header
 
