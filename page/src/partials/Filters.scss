@@ -1,0 +1,31 @@
+form.search-box {
+	width: 500px;
+	input {
+		width: 420px;
+	}
+}
+
+div.filters_container {
+	display: flex;
+	flex-direction: row;
+	margin-top: 5px;
+	justify-content: space-between;
+	width: 500px;
+}
+
+div.tribunal_filter, div.field_filter {
+	justify-self: left;
+	select {
+		padding-left: 5px;
+		border: none;
+		background-color: #444;
+		color: whitesmoke;
+		width: 245px;
+		border-radius: 5px;
+		cursor: pointer;
+		height: 30px;
+	}
+	select:hover {
+		background-color: #7f7f7f;;
+	}
+}

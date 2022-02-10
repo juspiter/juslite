@@ -13,7 +13,7 @@ se = SearchEngine('juslite_elastic:9200')
 @app.route("/lawsuit/<path:endpoint>", methods=["GET"])
 @cross_origin()
 def query_lawsuit(endpoint):
-    return se.get_results(endpoint, request.args['sort'], request.args['court'])
+    return se.get_results(endpoint, request.args['sort'], request.args['court'], request.args['field'])
 
 
 if __name__ == '__main__':

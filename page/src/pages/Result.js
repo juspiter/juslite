@@ -11,7 +11,7 @@ const Result = () => {
   const [requestResponse, setRequestResponse] = useState({ "response": [] });
   const [sortOption, setSortOption] = useState("relevante");
   const [isSearching, setIsSearching] = useState(true);
-  const { term, court } = useParams();
+  const { term, court , field} = useParams();
   const navigate = useNavigate();
 
   const sortOptionHandler = selectedSort => {
@@ -22,7 +22,7 @@ const Result = () => {
     setIsSearching(true);
 
     // const res = await fetch("https://juslite.42sp.org.br/api/lawsuit/" + term + "?sort=" + sortOption + "&court=" + court);
-    const res = await fetch("http://localhost:80/api/lawsuit/" + term + "?sort=" + sortOption + "&court=" + court);
+    const res = await fetch("http://localhost:80/api/lawsuit/" + term + "?sort=" + sortOption + "&court=" + court + "&field=" + field);
 
     if (res.ok) {
       const data = await res.json();
