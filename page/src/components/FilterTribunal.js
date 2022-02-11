@@ -12,7 +12,7 @@ const FilterTribunal = (props) => {
           value={props.selected}
           onChange={filterChangeHandler}
         >
-          <option value="todos">Todos os tribunais</option>
+          <option value="todos">Em todos os tribunais</option>
           <option value="tjal">Tribunal de Justiça de Alagoas</option>
           <option value="tjce">Tribunal de Justiça do Ceará</option>
           <option value="tst">Tribunal Superior do Trabalho</option>

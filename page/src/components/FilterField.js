@@ -12,14 +12,14 @@ const FilterField = (props) => {
           value={props.selected}
           onChange={filterChangeHandler}
         >
-          <option value="todos">Todos os campos</option>
-          <option value="parte">Nome de Partes</option>
-          <option value="adv">Nome de Advogado</option>
-          <option value="juiz">Nome de Magistrado</option>
-          <option value="foro">Foro</option>
-          <option value="vara">Vara</option>
-          <option value="classe">Classe</option>
-          <option value="assunto">Assunto</option>
+          <option value="todos">em todos os campos</option>
+          <option value="parte">por nome de partes</option>
+          <option value="adv">por nome de advogado</option>
+          <option value="juiz">por nome de magistrado</option>
+          <option value="assunto">por assunto</option>
+          <option value="classe">por classe</option>
+          <option value="foro">por foro</option>
+          <option value="vara">por vara</option>
         </select>
       </div>
     </>

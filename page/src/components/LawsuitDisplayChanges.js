@@ -21,7 +21,7 @@ const LawsuitDisplayChanges = (props) => {
         </li>
         <hr />
       </div>
-      {movesFilterOption == "todas" && props.proc['moves'].map(change => (
+      {movesFilterOption === "todas" && props.proc['moves'].map(change => (
         <div>
           <li className="row align-items-start" key={change}>
             <div className="col-2"><b>{change['data']}</b></div>
@@ -46,7 +46,7 @@ const LawsuitDisplayChanges = (props) => {
             <hr />
           </div>
       ))}
-      
+
     </section>
   );
 }

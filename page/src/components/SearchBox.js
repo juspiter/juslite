@@ -33,7 +33,7 @@ const SearchBox = () => {
   }
   return (
     <>
-      <form className="input-group mb-3 search-box" onSubmit={handleSearchSubmit}>
+      <form className="input-group search-box" onSubmit={handleSearchSubmit}>
         <input
           className="input-text input-group-text"
           type="text"

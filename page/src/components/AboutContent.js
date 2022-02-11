@@ -31,7 +31,7 @@ const AboutContent = () => {
                     <li><a target="_blank" rel="noreferrer" href="https://github.com/aalcara">Anderson</a></li>
                     <li><a target="_blank" rel="noreferrer" href="https://github.com/LuccasRMedeiros">Luccas</a></li>
                     <li><a target="_blank" rel="noreferrer" href="https://github.com/natflausino">Natasha</a></li>
-                    <li><a target="_blank" href="https://github.com/rkrocha">Rafael</a></li>
+                    <li><a target="_blank" rel="noreferrer" href="https://github.com/rkrocha">Rafael</a></li>
                   </ul>
                 </div>
                 <div class="col">

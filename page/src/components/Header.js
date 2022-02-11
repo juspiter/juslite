@@ -17,7 +17,7 @@ const Header = () => {
               />
             </Link>
           </div>
-          <div className="col-11" id="searchbox">
+          <div className="col-11 mt-4" id="searchbox">
             <SearchBox />
           </div>
         </div>
