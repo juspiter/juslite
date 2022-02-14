@@ -28,7 +28,7 @@ const SearchBox = () => {
     const searchTermInput = searchTermRef.current.value;
     // console.log(searchTermInput);
     if (searchTermInput.length > 2) {
-      navigate("/busca/" + searchTermInput + "/" + courtFilterOption + "/" + fieldFilterOption);
+      navigate("/busca/" + searchTermInput + "/" + "relevante" + "/" + courtFilterOption + "/" + fieldFilterOption + "/" + "1");
     }
   }
   return (

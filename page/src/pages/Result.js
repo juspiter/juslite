@@ -5,24 +5,26 @@ import LawsuitNotFound from "../components/LawsuitNotFound";
 import SortOptions from '../components/SortOptions.js';
 import Header from '../components/Header.js';
 import ButtonTop from '../components/ButtonTop';
+import ButtonPage from '../components/ButtonPage';
 
 
 const Result = () => {
   const [requestResponse, setRequestResponse] = useState({ "response": [] });
-  const [sortOption, setSortOption] = useState("relevante");
+  const {term, sort, court, field, page} = useParams();
+  const [sortOption, setSortOption] = useState(sort);
   const [isSearching, setIsSearching] = useState(true);
-  const { term, court , field} = useParams();
   const navigate = useNavigate();
 
   const sortOptionHandler = selectedSort => {
+    navigate("/busca/" + term + "/" + selectedSort + "/" + court + "/" + field + "/" + "1");
     setSortOption(selectedSort);
   }
 
   async function fetchLawsuitsHandler() {
     setIsSearching(true);
 
-    const res = await fetch("https://juslite.42sp.org.br/api/lawsuit/" + term + "?sort=" + sortOption + "&court=" + court + "&field=" + field);
-    //const res = await fetch("http://localhost:80/api/lawsuit/" + term + "?sort=" + sortOption + "&court=" + court + "&field=" + field);
+    // const res = await fetch("https://juslite.42sp.org.br/api/lawsuit/" + term + "?sort=" + sortOption + "&court=" + court + "&field=" + field + "&page=" + page);
+    const res = await fetch("http://localhost:80/api/lawsuit/" + term + "?sort=" + sortOption + "&court=" + court + "&field=" + field + "&page=" + page);
 
     if (res.ok) {
       const data = await res.json();
@@ -34,15 +36,17 @@ const Result = () => {
 
   useEffect(() => {
     fetchLawsuitsHandler();
-  }, [term, court, sortOption]);
+  }, [sortOption, term, court, field]);
 
   if (!isSearching && requestResponse.response.length > 1) {
     return (
       <div className="container">
         <Header />
+        <h5>{requestResponse.count} resultados</h5>
         <SortOptions selected={sortOption} onChangeSort={sortOptionHandler} />
-        <LawsuitList list={requestResponse.response} />
+        <LawsuitList list={requestResponse.response}/>
         <ButtonTop/>
+        <ButtonPage sort={sortOption} term={term} court={court} field={field} page={page}/>
       </div>
     )
   }

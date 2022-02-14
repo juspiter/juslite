@@ -1,5 +1,5 @@
 from elasticsearch import Elasticsearch
-from elasticsearch_dsl import Search
+from elasticsearch_dsl import Search, tokenizer
 from suitparser import SuitParser
 import re
 
@@ -23,54 +23,25 @@ class SearchEngine:
         if not self.es.ping():
             raise ValueError("ElasticSearch connection failed")
 
-    def get_results(self, string: str, sort: str, court: str, field: str) -> dict:
+    def get_results(self, string: str, sort: str, court: str, field: str, page: int) -> dict:
         lawsuit = SuitParser(string)
         if re.match('^[0-9.-]+$', string):
             return self.get_by_number(lawsuit)
 
-        #     return self.get_term_by_court(string, court_filter, sort)
-        # return self.get_by_term(string, sort)
-
         if court not in COURT_LIST or field not in FILTER_DICT.keys():
             return{"response": [], "status_code": 5, "status": "Nenhum resultado encontrado"}
-
         if court == "todos":
             court = "*"
 
-        s = Search(using=self.es, doc_type="lawsuit", index=court).query('multi_match', 
+        s = Search(using=self.es, doc_type="lawsuit", index=court).query('query_string', analyzer="standard",
             query=string, fields=FILTER_DICT.get(field))
         if sort == 'recente':
             s = s.sort('-ultima_mov.data')
-        res = s.execute()
+        index = (int(page) - 1) * 10
+        res = s[index : index + 10].execute()
         if res.hits == []:
             return{"response": [], "status_code": 5, "status": "Nenhum resultado encontrado"}
-        return {"response": [hit.to_dict() for hit in res.hits], "status_code": 0, "status": "OK"}
-
-
-    # def get_term_by_court(self, term: str, court: str, sort: str) -> dict:
-    #     if not term:
-    #         s = Search(using=self.es, doc_type="lawsuit", index=court)
-    #     else:
-    #         s = Search(using=self.es, doc_type="lawsuit", index=court).query('multi_match',
-    #         query=term,
-    #         fields=['numero', 'situacao', 'info_header.info*.conteudo', 'partes_todas*.nomes'])
-    #     if sort == 'recente':
-    #         s = s.sort('-ultima_mov.data')
-    #     res = s.execute()
-    #     if res.hits == []:
-    #         return{"termo": term, "sort": sort, "court": court, "response": [], "status_code": 5, "status": "Nenhum resultado encontrado"}
-    #     return {"response": [hit.to_dict() for hit in res.hits], "status_code": 0, "status": "OK"}
-
-    # def get_by_term(self, term: str, sort: str) -> dict:
-    #     s = Search(using=self.es, doc_type="lawsuit").query('multi_match',
-    #         query=term,
-    #         fields=['tribunal', 'numero', 'situacao', 'info_header.info*.conteudo', 'partes_todas*.nomes'])
-    #     if sort == 'recente':
-    #         s = s.sort('-ultima_mov.data')
-    #     res = s.execute()
-    #     if res.hits == []:
-    #         return{"response": [], "status_code": 5, "status": "Nenhum resultado encontrado"}
-    #     return {"response": [hit.to_dict() for hit in res.hits], "status_code": 0, "status": "OK"}
+        return {"response": [hit.to_dict() for hit in res.hits], "status_code": 0, "status": "OK", "count": res.hits.total.value}
 
     def get_by_number(self, lawsuit) -> dict:
         if not lawsuit.is_valid:
