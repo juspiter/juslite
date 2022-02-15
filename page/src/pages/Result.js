@@ -36,7 +36,7 @@ const Result = () => {
 
   useEffect(() => {
     fetchLawsuitsHandler();
-  }, [sortOption, term, court, field]);
+  }, [sortOption, term, court, field, page]);
 
   if (!isSearching && requestResponse.response.length > 1) {
     return (
@@ -46,12 +46,12 @@ const Result = () => {
         <SortOptions selected={sortOption} onChangeSort={sortOptionHandler} />
         <LawsuitList list={requestResponse.response}/>
         <ButtonTop/>
-        <ButtonPage sort={sortOption} term={term} court={court} field={field} page={page}/>
+        <ButtonPage sort={sortOption} term={term} court={court} field={field} page={page} count={requestResponse.count}/>
       </div>
     )
   }
   else if (!isSearching && requestResponse.response.length === 1) {
-    navigate("/exibir/" + requestResponse.response[0].numero);//trocar por useNavigate
+    navigate("/exibir/" + requestResponse.response[0].numero);
     return (
       <div className="container">
         <Header />

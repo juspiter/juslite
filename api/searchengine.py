@@ -7,7 +7,7 @@ import re
 COURT_LIST = ['todos', 'tjal', 'tjce', 'tst']
 FILTER_DICT = {
     "todos": ['numero', 'situacao', 'info_header.info*.conteudo', 'partes_todas*.nomes'],
-    "partes": ['partes_todas*.nomes'],
+    "parte": ['partes_todas*.nomes'],
     "adv": ['partes_todas*.outros'],
     "classe": ['info_header.info0.conteudo'],
     "assunto": ['info_header.info1.conteudo'],
