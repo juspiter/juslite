@@ -17,6 +17,10 @@ const SearchBox = () => {
     field = "todos"
   }
 
+  if (sort === undefined) {
+    sort = "relevante"
+  }
+
   const [courtFilterOption, setCourtFilterOption] = useState(court)
   const [fieldFilterOption, setFieldFilterOption] = useState(field)
 
@@ -37,7 +41,7 @@ const SearchBox = () => {
     const searchTermInput = searchTermRef.current.value;
     // console.log(searchTermInput);
     if (searchTermInput.length > 2) {
-      navigate("/busca/" + searchTermInput + "/" + "relevante" + "/" + courtFilterOption + "/" + fieldFilterOption + "/" + "1");
+      navigate("/busca/" + searchTermInput + "/" + sort + "/" + courtFilterOption + "/" + fieldFilterOption + "/" + "1");
     }
   }
   return (
