@@ -3,7 +3,7 @@ import SearchBox from './SearchBox.js'
 import { Link } from 'react-router-dom'
 
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header id="header_">
       <div className="container">

@@ -1,5 +1,5 @@
 import { React, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import FilterTribunal from './FilterTribunal';
 import FilterField from './FilterField';
 
@@ -7,9 +7,18 @@ import FilterField from './FilterField';
 
 const SearchBox = () => {
 
-  const [courtFilterOption, setCourtFilterOption] = useState('todos')
+  let {term, sort, court, field} = useParams()
 
-  const [fieldFilterOption, setFieldFilterOption] = useState('todos')
+  if (court === undefined) {
+    court = "todos"
+  }
+
+  if (field === undefined) {
+    field = "todos"
+  }
+
+  const [courtFilterOption, setCourtFilterOption] = useState(court)
+  const [fieldFilterOption, setFieldFilterOption] = useState(field)
 
   const filterOptionHandler = selectedCourtFilter => {
     setCourtFilterOption(selectedCourtFilter)
