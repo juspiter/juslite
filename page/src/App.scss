@@ -89,6 +89,14 @@ a:hover {
   background-color: rgb(197, 150, 133);
 }
 
+div.page_buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 
 @import "partials/LawsuitPreview.scss";
