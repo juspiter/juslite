@@ -3,11 +3,15 @@ import { useParams, useNavigate } from 'react-router-dom';
 import FilterTribunal from './FilterTribunal';
 import FilterField from './FilterField';
 
-// const [searchTerm, setSearchTerm] = useState("");
 
 const SearchBox = () => {
 
   let {term, sort, court, field} = useParams()
+  const [searchTerm, setSearchTerm] = useState(term);
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value)
+  }
 
   if (court === undefined) {
     court = "todos"
@@ -34,20 +38,16 @@ const SearchBox = () => {
 
   const navigate = useNavigate();
 
-  const searchTermRef = useRef();
-
   const handleSearchSubmit = event => {
     event.preventDefault();
-    let searchTermInput = searchTermRef.current.value;
-    // console.log(searchTermInput);
 
-    if (searchTermInput.replace(/[\s\?\*\#\/\%\\]/g, '').length < 2) {
-      searchTermRef.current.value = "";
+    if (searchTerm.replace(/[\s\?\*\#\/\%\\]/g, '').length < 2) {
+      setSearchTerm("");
       return ;
     }
 
-    if (searchTermInput.length > 1 ) {
-      navigate("/busca/" + searchTermInput + "/" + sort + "/" + courtFilterOption + "/" + fieldFilterOption + "/" + "1");
+    if (searchTerm.length > 1 ) {
+      navigate("/busca/" + searchTerm + "/" + sort + "/" + courtFilterOption + "/" + fieldFilterOption + "/" + "1");
     }
   }
   return (
@@ -57,9 +57,8 @@ const SearchBox = () => {
           className="input-text input-group-text"
           type="text"
           placeholder='Busque por um processo...'
-          ref={searchTermRef}
-          // value={searchTerm}
-          // onChange={handleSearchChange}
+          value={searchTerm}
+          onChange={handleSearchChange}
         />
         <button className="input-group-text input-button" type='submit'>Buscar</button>
       </form>
