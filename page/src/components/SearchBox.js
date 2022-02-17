@@ -38,9 +38,15 @@ const SearchBox = () => {
 
   const handleSearchSubmit = event => {
     event.preventDefault();
-    const searchTermInput = searchTermRef.current.value;
+    let searchTermInput = searchTermRef.current.value;
     // console.log(searchTermInput);
-    if (searchTermInput.length > 2) {
+
+    if (searchTermInput.replace(/[\s\?\*\#\/\%\\]/g, '').length < 2) {
+      searchTermRef.current.value = "";
+      return ;
+    }
+
+    if (searchTermInput.length > 1 ) {
       navigate("/busca/" + searchTermInput + "/" + sort + "/" + courtFilterOption + "/" + fieldFilterOption + "/" + "1");
     }
   }
