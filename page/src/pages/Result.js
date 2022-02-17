@@ -38,7 +38,7 @@ const Result = () => {
     fetchLawsuitsHandler();
   }, [sortOption, term, court, field, page]);
 
-  if (!isSearching && requestResponse.response.length > 1) {
+  if (!isSearching && requestResponse.response.length >= 1) {
     return (
       <div className="container">
         <Header />
@@ -47,14 +47,6 @@ const Result = () => {
         <LawsuitList list={requestResponse.response}/>
         <ButtonTop/>
         <ButtonPage sort={sortOption} term={term} court={court} field={field} page={page} count={requestResponse.count}/>
-      </div>
-    )
-  }
-  else if (!isSearching && requestResponse.response.length === 1) {
-    navigate("/exibir/" + requestResponse.response[0].numero);
-    return (
-      <div className="container">
-        <Header />
       </div>
     )
   }
