@@ -8,6 +8,9 @@ const LawsuitSecret = (props) => {
         <h5 className='mt-2' style={{ "text-align": "center" }}>{props.lawsuit.tribunal.toUpperCase()} {props.lawsuit.numero}</h5>
         <hr />
         <p style={{ "text-align": "center" }}>Caso tenha permissão para acessá-lo, clique aqui para ir ao site do tribunal.</p>
+        <p className="atualizado_preview">
+          Atualizado em: {props.lawsuit.data_atualizacao}
+        </p>
       </div>
     </a>
   );
