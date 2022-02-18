@@ -7,6 +7,7 @@ const LawsuitList = (props) => {
       <div>
         {props.list.map(lawsuit => (
         <LawsuitPreview
+          key={lawsuit.numero}
           lawsuit={lawsuit}
         />))}
       </div>

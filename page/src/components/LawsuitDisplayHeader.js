@@ -5,7 +5,7 @@ const LawsuitDisplayHeader = (props) => {
     <div className='display_header'>
       <section className="d-inline-flex p-3 bd-highlight align-items-center gap-3">
         <div>
-          <div style={{"color" : "gray", "font-size" : "16px"}}>Nº do processo</div>
+          <div style={{"color" : "gray", "fontSize" : "16px"}}>Nº do processo</div>
             <div>
               <div className="header_number_process">
                 <strong> {props.proc['numero']} ({props.proc['tribunal'].toUpperCase()})</strong>

@@ -1,4 +1,4 @@
-import { React, useRef, useState } from 'react';
+import { React, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import FilterTribunal from './FilterTribunal';
 import FilterField from './FilterField';
@@ -7,10 +7,9 @@ import FilterField from './FilterField';
 const SearchBox = () => {
 
   let {term, sort, court, field} = useParams()
-  const [searchTerm, setSearchTerm] = useState(term);
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value)
+  if (term === undefined) {
+    term = ""
   }
 
   if (court === undefined) {
@@ -23,6 +22,12 @@ const SearchBox = () => {
 
   if (sort === undefined) {
     sort = "relevante"
+  }
+
+  const [searchTerm, setSearchTerm] = useState(term);
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value)
   }
 
   const [courtFilterOption, setCourtFilterOption] = useState(court)
@@ -41,13 +46,13 @@ const SearchBox = () => {
   const handleSearchSubmit = event => {
     event.preventDefault();
 
-    if (searchTerm.replace(/[\s\?\*\#\/\%\\]/g, '').length < 2) {
+    if (searchTerm.replace(/[\s?*#/%\\]/g, '').length < 2) {
       setSearchTerm("");
       return ;
     }
 
     if (searchTerm.length > 1 ) {
-      navigate("/busca/" + searchTerm + "/" + sort + "/" + courtFilterOption + "/" + fieldFilterOption + "/" + "1");
+      navigate("/busca/" + searchTerm + "/" + sort + "/" + courtFilterOption + "/" + fieldFilterOption + "/1");
     }
   }
   return (

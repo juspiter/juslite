@@ -16,7 +16,7 @@ const Result = () => {
   const navigate = useNavigate();
 
   const sortOptionHandler = selectedSort => {
-    navigate("/busca/" + term + "/" + selectedSort + "/" + court + "/" + field + "/" + "1");
+    navigate("/busca/" + term + "/" + selectedSort + "/" + court + "/" + field + "/1");
     setSortOption(selectedSort);
   }
 
@@ -36,6 +36,7 @@ const Result = () => {
 
   useEffect(() => {
     fetchLawsuitsHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortOption, term, court, field, page]);
 
   if (!isSearching && requestResponse.response.length >= 1) {

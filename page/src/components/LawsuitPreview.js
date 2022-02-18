@@ -14,22 +14,22 @@ const LawsuitPreview = props => {
       >
         <div className="row justify-content-center align-items-center">
           <div className="col-5">
-            <h5 style={{ 'text-align': 'right' }}>
+            <h5 style={{ 'textAlign': 'right' }}>
               <strong>{props.lawsuit.partes_principais.parte1}</strong>
             </h5>
           </div>
           <div className="col-1">
-            <h3 style={{ 'text-align': 'center', color: 'rgb(179, 177, 177)' }}>
+            <h3 style={{ 'textAlign': 'center', color: 'rgb(179, 177, 177)' }}>
               <strong> X </strong>
             </h3>
           </div>
           <div className="col-5">
-            <h5 style={{ 'text-align': 'left' }}>
+            <h5 style={{ 'textAlign': 'left' }}>
               <strong>{props.lawsuit.partes_principais.parte2}</strong>
             </h5>
           </div>
         </div>
-        <h5 className="mt-2" style={{ 'text-align': 'center' }}>
+        <h5 className="mt-2" style={{ 'textAlign': 'center' }}>
           {props.lawsuit.tribunal.toUpperCase()} {props.lawsuit.numero}
           {props.lawsuit.situacao && ' - '}
           <small>{props.lawsuit.situacao}</small>

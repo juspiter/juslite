@@ -8,7 +8,7 @@ const MovesFilter = (props) => {
     <>
       <div className="moves_filter input-group mb-3">
         <div className="input-group-prepend">
-          <label className="input-group-text" for="inputGroupSelect01" >Exibir </label>
+          <label className="input-group-text" htmlFor="inputGroupSelect01" >Exibir </label>
         </div>
         <select className="custom-select" id="inputGroupSelect01" value={props.selected} onChange={filterChangeHandler}>
           <option value='todas'>Todas</option>
