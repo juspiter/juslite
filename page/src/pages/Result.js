@@ -29,7 +29,7 @@ const Result = () => {
     if (res.ok) {
       const data = await res.json();
       setRequestResponse(data);
-      console.log(requestResponse.response);
+      //console.log(requestResponse.response);
     }
     setIsSearching(false);
   }
