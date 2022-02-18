@@ -110,7 +110,7 @@ class TstSpider(scrapy.Spider):
                 this_move['conteudo'] = " ".join(new_texts[2:])
             doc = move.xpath(".//a/@href").get()
             if doc is not None:
-                if 'http://' not in doc:
+                if 'http://' not in doc and 'https://' not in doc:
                     this_move['doc'] = "http://aplicacao4.tst.jus.br/consultaProcessual/" + doc
                 else:
                     this_move['doc'] = doc
