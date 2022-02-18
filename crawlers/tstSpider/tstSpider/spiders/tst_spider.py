@@ -1,5 +1,13 @@
 import scrapy
 import datetime
+from tst_dict import TST_DICT
+
+
+def expand_class(short_class: str) -> str:
+    long_class = short_class
+    if short_class.upper() in TST_DICT:
+        long_class = TST_DICT[short_class.upper()]
+    return long_class
 
 
 def make_url(number: str) -> str:
@@ -29,6 +37,7 @@ class TstSpider(scrapy.Spider):
         processo['sigilo'] = False
         numero = response.xpath("//td[@class='dadosProcesso']/b[contains(text(), 'Processo: ')]/font/text()").get()
         classe_numero = numero.split(sep=' ')
+
         processo['numero'] = '0' * (25 - len(classe_numero[-1])) + classe_numero[-1]
         processo['situacao'] = response.xpath("//td[@class='dadosProcesso']/b[text()=' - Fase Atual: ']/font/text()").get()
         processo['numeros_alternativos'] = self.get_numeros_alternativos(response.xpath("//td[@class='dadosProcesso']"))
@@ -56,7 +65,7 @@ class TstSpider(scrapy.Spider):
 
     def get_info_header(self, header, classe):
         info_header = {}
-        info_header['info0'] = {"titulo": "Classe", "conteudo": classe}
+        info_header['info0'] = {"titulo": "Classe", "conteudo": expand_class(classe)}
         info_header['info1'] = {"titulo": "", "conteudo": ""}
         info_header['info2'] = {"titulo": header[0].split(':')[0], "conteudo": header[1]}
         info_header['info3'] = {"titulo": "", "conteudo": ""}
