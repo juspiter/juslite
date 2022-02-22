@@ -33,7 +33,7 @@ class SearchEngine:
         if court == "todos":
             court = "*"
 
-        s = Search(using=self.es, doc_type="lawsuit", index=court).query('query_string', analyzer="standard",
+        s = Search(using=self.es, doc_type="lawsuit", index=court).query('query_string', analyzer="brazilian",
             query=string, fields=FILTER_DICT.get(field))
         if sort == 'recente':
             s = s.sort('-ultima_mov.data')
