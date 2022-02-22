@@ -11,7 +11,9 @@ const Display = () => {
   async function fetchLawsuitsHandler() {
     setIsSearching(true);
 
-    const res = await fetch("https://juslite.42sp.org.br/api/lawsuit/" + number + "?sort=&court=&field=&page=");
+    const res = await fetch("https://juslite.42sp.org.br/api/lawsuit/" + number);
+    // const res = await fetch("http://localhost:80/api/lawsuit/" + number);
+
 
     if (res.ok) {
       const data = await res.json();

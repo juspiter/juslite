@@ -1,5 +1,5 @@
 from elasticsearch import Elasticsearch
-from elasticsearch_dsl import Search, tokenizer
+from elasticsearch_dsl import Search
 from suitparser import SuitParser
 import re
 
@@ -34,14 +34,14 @@ class SearchEngine:
             court = "*"
 
         s = Search(using=self.es, doc_type="lawsuit", index=court).query('query_string', analyzer="brazilian",
-            query=string, fields=FILTER_DICT.get(field))
+            query=string, fields=FILTER_DICT.get(field)).source(excludes=["moves", "partes_todas"])
         if sort == 'recente':
             s = s.sort('-ultima_mov.data')
         index = (int(page) - 1) * 10
         res = s[index : index + 10].execute()
         if res.hits == []:
             return{"response": [], "status_code": 5, "status": "Nenhum resultado encontrado"}
-        return {"response": [hit.to_dict() for hit in res.hits], "status_code": 0, "status": "OK", "count": res.hits.total.value}
+        return {"status_code": 0, "status": "OK", "count": res.hits.total.value, "response": [hit.to_dict() for hit in res.hits]}
 
     def get_by_number(self, lawsuit) -> dict:
         if not lawsuit.is_valid:
@@ -54,10 +54,17 @@ class SearchEngine:
             return{"response": [], "status_code": 3, "status": "Ano inválido"}
 
         s = Search(using=self.es, doc_type='lawsuit') \
-            .query('ids', values=[lawsuit.formatted_number])
+            .query('ids', values=[lawsuit.formatted_number]).source(excludes=["moves", "partes_todas"])
         res = s.execute()
 
         if res.hits == []:
             return{"response": [], "status_code": 4, "status": "Processo desconhecido"}
 
-        return {"response": [hit.to_dict() for hit in res.hits], "status_code": 0, "status": "OK"}
+        return {"status_code": 0, "status": "OK", "count": res.hits.total.value, "response": [hit.to_dict() for hit in res.hits]}
+
+    def get_one_lawsuit(self, lawsuit) -> dict:
+        s = Search(using=self.es, doc_type='lawsuit') \
+            .query('ids', values=[lawsuit])
+        res = s.execute()
+
+        return {"status_code": 0, "status": "OK", "response": [hit.to_dict() for hit in res.hits]}
