@@ -26,7 +26,7 @@ No momento são suportados os seguintes tribunais:
 * [Python](https://www.python.org/)
 * [Scrapy](https://scrapy.org/), framework de [web crawling](https://pt.wikipedia.org/wiki/Rastreador_web)
 * [Elasticsearch](https://www.elastic.co/pt/), motor de busca
-* [Flask](https://flask.palletsprojects.com/en/2.0.x/), API
+* [FastAPI](https://fastapi.tiangolo.com/), API
 * [Docker](https://www.docker.com/)
 * [nginx](https://nginx.org/en/)
 
