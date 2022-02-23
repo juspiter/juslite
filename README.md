@@ -26,7 +26,7 @@ No momento são suportados os seguintes tribunais:
 * [Python](https://www.python.org/)
 * [Scrapy](https://scrapy.org/), framework de [web crawling](https://pt.wikipedia.org/wiki/Rastreador_web)
 * [Elasticsearch](https://www.elastic.co/pt/), motor de busca
-* [Flask](https://flask.palletsprojects.com/en/2.0.x/), API
+* [FastAPI](https://fastapi.tiangolo.com/), API
 * [Docker](https://www.docker.com/)
 * [nginx](https://nginx.org/en/)
 
@@ -48,6 +48,19 @@ Cada página, script e componente do React que compõe o site, assim como seus e
 
 ### [Proxy reverso](https://github.com/juspiter/juslite/tree/main/proxy)
 Um componente simples para rotear acessos à página e API.
+
+## Setup
+
+É fácil rodar sua própria instância do Juslite visto que o projeto está 100% containerizado, e sendo assim suas únicas dependências são o Docker e docker-compose.
+
+1. Clone ou baixe o repositório do Juslite.
+2. Modifique o endereço do host/servidor nos arquivos [Result.js](https://github.com/juspiter/juslite/blob/main/page/src/pages/Result.js) (linha 26), e [Display.js](https://github.com/juspiter/juslite/blob/main/page/src/pages/Display.js) (linha 14).
+3. Dentro da pasta do Juslite, execute o comando abaixo:
+```sh
+docker-compose up -d
+```
+Feito isso, serão baixadas todas as imagens necessárias e subidos todos os containers. No momento o projeto conta com uma amostra de aproximadamente 10 mil processos, sendo que pode levar várias horas até que sejam coletados dos tribunais os dados de todos esses processos.
+
 
 ## Autoria
 
