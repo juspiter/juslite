@@ -23,13 +23,11 @@ const Result = () => {
   async function fetchLawsuitsHandler() {
     setIsSearching(true);
 
-    const res = await fetch("https://juslite.42sp.org.br/api/query/" + term + "?sort=" + sortOption + "&court=" + court + "&field=" + field + "&page=" + page);
-    // const res = await fetch("http://localhost:80/api/query/" + term + "?sort=" + sortOption + "&court=" + court + "&field=" + field + "&page=" + page);
+    const res = await fetch(process.env.REACT_APP_HOST_ADDR + "/api/query/" + term + "?sort=" + sortOption + "&court=" + court + "&field=" + field + "&page=" + page);
 
     if (res.ok) {
       const data = await res.json();
       setRequestResponse(data);
-      //console.log(requestResponse.response);
     }
     setIsSearching(false);
   }
