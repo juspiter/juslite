@@ -54,7 +54,7 @@ Um componente simples para rotear acessos à página e API.
 É fácil rodar sua própria instância do Juslite visto que o projeto está 100% containerizado, e sendo assim suas únicas dependências são o Docker e docker-compose.
 
 1. Clone ou baixe o repositório do Juslite.
-2. Modifique o endereço do host/servidor nos arquivos [Result.js](https://github.com/juspiter/juslite/blob/main/page/src/pages/Result.js) (linha 26), e [Display.js](https://github.com/juspiter/juslite/blob/main/page/src/pages/Display.js) (linha 14).
+2. Modifique o endereço do host/servidor no arquivo [.env](https://github.com/juspiter/juslite/blob/main/page/.env).
 3. Dentro da pasta do Juslite, execute o comando abaixo:
 ```sh
 docker-compose up -d
