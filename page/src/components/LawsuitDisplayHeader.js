@@ -13,7 +13,7 @@ const LawsuitDisplayHeader = (props) => {
               </div>
               <div>
                 {props.proc['numeros_alternativos'] &&
-              <div>{props.proc['numeros_alternativos'].map(alter, index => (
+              <div>{props.proc['numeros_alternativos'].map((alter, index) => (
                 <div key={index}>{alter['titulo']}: {alter['numero']}</div>))}
               </div>}
             </div>
